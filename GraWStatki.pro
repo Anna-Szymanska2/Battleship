@@ -7,9 +7,11 @@ SOURCES += \
         Gracz.cpp \
         Plansza.cpp \
         Pole.cpp \
+        Statek.cpp \
         main.cpp
 
 HEADERS += \
     Gracz.h \
     Plansza.h \
-    Pole.h
+    Pole.h \
+    Statek.h

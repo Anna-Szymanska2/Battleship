@@ -18,7 +18,12 @@ int main()
     plansza.pola_planszy[4][9].ustawCzyJestZaznoczone(1);
     plansza.pola_planszy[4][9].ustawCzyZostaloTrafione(1);
     plansza.pola_planszy[4][9].ustawCzyZawieraStatek(1);
-    plansza.wyswietlZawartoscPlanszy();
+   // plansza.wyswietlZawartoscPlanszy();
+
+    Plansza plansza1;
+    plansza1.ulozStatekNaPlanszy(plansza1.pieciomasztowiec, 0, 0, 2);
+    plansza1.ulozStatekNaPlanszy(plansza1.czteromasztowiec, 6, 3, 4);
+    plansza1.wyswietlZawartoscPlanszy();
 
     HANDLE standardowy_uchwyt_wyjscia;
     standardowy_uchwyt_wyjscia = GetStdHandle(STD_OUTPUT_HANDLE);
