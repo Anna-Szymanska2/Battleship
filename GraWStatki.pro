@@ -5,6 +5,8 @@ CONFIG -= qt
 
 SOURCES += \
         Gracz.cpp \
+        GraczCzlowiek.cpp \
+        GraczKomputer.cpp \
         Plansza.cpp \
         Pole.cpp \
         Statek.cpp \
@@ -12,6 +14,8 @@ SOURCES += \
 
 HEADERS += \
     Gracz.h \
+    GraczCzlowiek.h \
+    GraczKomputer.h \
     Plansza.h \
     Pole.h \
     Statek.h

@@ -16,6 +16,7 @@ class Pole
     bool p_czy_zostalo_trafione;
    // char p_fragment_interfejsu;
     bool p_czy_jest_zaznaczone;
+    bool p_czy_jest_w_otoczeniu_statku;
 
 public:
     Pole();
@@ -23,8 +24,11 @@ public:
     ~Pole();
     void ustawCzyZawieraStatek(bool czy_zawiera_statek);
     void ustawCzyZostaloTrafione (bool czy_zostalo_trafione);
+    void ustawCzyJestWOtoczeniuStatku(bool czy_jest_w_otoczeniu_statku);
    // void ustawFragmentInterfejsu( char fragment_interfejsu);
-    void ustawCzyJestZaznoczone(bool czy_jest_zaznaczone);
+    void ustawCzyJestZaznaczone(bool czy_jest_zaznaczone);
+    bool zwrocCzyPoleJestWOtoczeniuStatku();
+    bool zwrocCzyPoleZawieraStatek();
     void wyswietlPole();
 
 };

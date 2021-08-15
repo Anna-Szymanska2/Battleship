@@ -11,18 +11,19 @@ int main()
     plansza.pola_planszy[0][2].ustawCzyZostaloTrafione(1);
     plansza.pola_planszy[4][7].ustawCzyZawieraStatek(1);
     plansza.pola_planszy[4][7].ustawCzyZostaloTrafione(1);
-    plansza.pola_planszy[4][7].ustawCzyJestZaznoczone(1);
+    plansza.pola_planszy[4][7].ustawCzyJestZaznaczone(1);
     plansza.pola_planszy[4][8].ustawCzyZawieraStatek(1);
     plansza.pola_planszy[4][8].ustawCzyZostaloTrafione(1);
-    plansza.pola_planszy[4][6].ustawCzyJestZaznoczone(1);
-    plansza.pola_planszy[4][9].ustawCzyJestZaznoczone(1);
+    plansza.pola_planszy[4][6].ustawCzyJestZaznaczone(1);
+    plansza.pola_planszy[4][9].ustawCzyJestZaznaczone(1);
     plansza.pola_planszy[4][9].ustawCzyZostaloTrafione(1);
     plansza.pola_planszy[4][9].ustawCzyZawieraStatek(1);
    // plansza.wyswietlZawartoscPlanszy();
 
     Plansza plansza1;
-    plansza1.ulozStatekNaPlanszy(plansza1.pieciomasztowiec, 0, 0, 2);
-    plansza1.ulozStatekNaPlanszy(plansza1.czteromasztowiec, 6, 3, 4);
+    plansza1.ulozStatekNaPlanszy(plansza1.czteromasztowiec, 6, 4, 4);
+    plansza1.ulozStatekNaPlanszy(plansza1.pieciomasztowiec, 7, 1, 1);
+
     plansza1.wyswietlZawartoscPlanszy();
 
     HANDLE standardowy_uchwyt_wyjscia;

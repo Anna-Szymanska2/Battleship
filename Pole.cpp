@@ -11,6 +11,7 @@ Pole::Pole()
     p_czy_zawiera_statek = 0;
     p_czy_zostalo_trafione = 0;
     p_czy_jest_zaznaczone = 0;
+    p_czy_jest_w_otoczeniu_statku = 0;
 }
 
 Pole::~Pole()
@@ -56,7 +57,22 @@ void Pole::ustawCzyZostaloTrafione (bool czy_zostalo_trafione)
     p_czy_zostalo_trafione = czy_zostalo_trafione;
 }
 
-void Pole::ustawCzyJestZaznoczone(bool czy_jest_zaznaczone)
+void Pole::ustawCzyJestZaznaczone(bool czy_jest_zaznaczone)
 {
     p_czy_jest_zaznaczone = czy_jest_zaznaczone;
+}
+
+void Pole::ustawCzyJestWOtoczeniuStatku(bool czy_jest_w_otoczeniu_statku)
+{
+    p_czy_jest_w_otoczeniu_statku = czy_jest_w_otoczeniu_statku;
+}
+
+bool Pole::zwrocCzyPoleJestWOtoczeniuStatku()
+{
+    return p_czy_jest_w_otoczeniu_statku;
+}
+
+bool Pole::zwrocCzyPoleZawieraStatek()
+{
+    return p_czy_zawiera_statek;
 }
