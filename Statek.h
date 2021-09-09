@@ -9,12 +9,13 @@ using namespace std;
 
 class Statek
 {
+public: //zmienic po testach
     int p_dlugosc_statku;
     vector<Pole*> p_polozenie;
     bool p_czy_jest_trafiony;
     bool p_czy_jest_zatopiony;
 
-public:
+//public:
     Statek();
     Statek(int dlugosc_statku);
   //  ~Statek();

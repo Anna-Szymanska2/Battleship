@@ -10,24 +10,25 @@ using namespace std;
 int main()
 {
 
-    Plansza plansza;
-    plansza.pola_planszy[0][2].ustawCzyZostaloTrafione(1);
-    plansza.pola_planszy[4][7].ustawCzyZawieraStatek(1);
-    plansza.pola_planszy[4][7].ustawCzyZostaloTrafione(1);
-    plansza.pola_planszy[4][7].ustawCzyJestZaznaczone(1);
-    plansza.pola_planszy[4][8].ustawCzyZawieraStatek(1);
-    plansza.pola_planszy[4][8].ustawCzyZostaloTrafione(1);
-    plansza.pola_planszy[4][6].ustawCzyJestZaznaczone(1);
-    plansza.pola_planszy[4][9].ustawCzyJestZaznaczone(1);
-    plansza.pola_planszy[4][9].ustawCzyZostaloTrafione(1);
-    plansza.pola_planszy[4][9].ustawCzyZawieraStatek(1);
-   // plansza.wyswietlZawartoscPlanszy();
+//    Plansza plansza;
+//    plansza.pola_planszy[0][2].ustawCzyZostaloTrafione(1);
+//    plansza.pola_planszy[4][7].ustawCzyZawieraStatek(1);
+//    plansza.pola_planszy[4][7].ustawCzyZostaloTrafione(1);
+//    plansza.pola_planszy[4][7].ustawCzyJestZaznaczone(1);
+//    plansza.pola_planszy[4][8].ustawCzyZawieraStatek(1);
+//    plansza.pola_planszy[4][8].ustawCzyZostaloTrafione(1);
+//    plansza.pola_planszy[4][6].ustawCzyJestZaznaczone(1);
+//    plansza.pola_planszy[4][9].ustawCzyJestZaznaczone(1);
+//    plansza.pola_planszy[4][9].ustawCzyZostaloTrafione(1);
+//    plansza.pola_planszy[4][9].ustawCzyZawieraStatek(1);
+//   // plansza.wyswietlZawartoscPlanszy();
 
-    Plansza plansza1;
-    plansza1.ulozStatekNaPlanszy(plansza1.czteromasztowiec, 6, 4, 1);
-    plansza1.ulozStatekNaPlanszy(plansza1.pieciomasztowiec, 7, 1, 1);
+//    Plansza plansza1;
+//    plansza1.ulozStatekNaPlanszy(plansza1.pieciomasztowiec, 5, 1, 2);
+//    plansza1.ulozStatekNaPlanszy(plansza1.czteromasztowiec, 5, 1, 2);
 
-    plansza1.wyswietlZawartoscPlanszy();
+
+//    plansza1.wyswietlZawartoscPlanszy();
 
     GraczKomputer mpk1;
     cout << mpk1.zwrocNazwe() << endl;
@@ -35,6 +36,7 @@ int main()
     mpk1.wyswietlPlansze();
 //    GraczCzlowiek cz1;
 //    cout << cz1.zwrocNazwe() << endl;
+    mpk1.zwrocNazwe();
 
     HANDLE standardowy_uchwyt_wyjscia;
     standardowy_uchwyt_wyjscia = GetStdHandle(STD_OUTPUT_HANDLE);

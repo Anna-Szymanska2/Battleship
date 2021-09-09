@@ -47,24 +47,6 @@ void wylosujLiczbyDoUlozeniaStatku(int &kolumna, int &wiersz, int &kierunek)
     kierunek= rand()%4+1;
 }
 
-void GraczKomputer::ustawPojedynczyStatek(int &wylosowana_kolumna, int &wylosowany_wiersz, int &wylosowany_kierunek, int dlugosc_statku, int numer)
-{
-    wylosujLiczbyDoUlozeniaStatku(wylosowana_kolumna,wylosowany_wiersz,wylosowany_kierunek);
-    Statek statek(dlugosc_statku);
-    try
-    {
-        plansza.ulozStatekNaPlanszy(statek,wylosowany_wiersz,wylosowana_kolumna,wylosowany_kierunek);
-        plansza.ustawStatek(statek,dlugosc_statku,numer);
-
-    }
-    catch(out_of_range)
-    {
-        cout << "Tutaj czasem cos odwala" << endl;
-        ustawPojedynczyStatek(wylosowana_kolumna,wylosowany_wiersz,wylosowany_kierunek,dlugosc_statku,numer);
-
-    }
-
-}
 
 void GraczKomputer::ustawStatki()
 {
@@ -72,12 +54,40 @@ void GraczKomputer::ustawStatki()
     int wylosowany_wiersz = 0;
     int wylosowany_kierunek = 1;
 
-    while(true)
+    for(int i = 5; i>0; i--)
     {
-       ustawPojedynczyStatek(wylosowana_kolumna,wylosowany_wiersz,wylosowany_kierunek,5,0);
-       break;
-    }
+        while(true)
+        {
+           wylosujLiczbyDoUlozeniaStatku(wylosowana_kolumna,wylosowany_wiersz,wylosowany_kierunek);
+           try
+           {
+               plansza.ulozStatkiNaPlanszy(wylosowany_wiersz,wylosowana_kolumna,wylosowany_kierunek,i,1);
+               break;
+           }
+           catch (out_of_range)
+           {
 
+           }
+        }
+
+        if(i!=5 && i!=4)
+        {
+            while(true)
+            {
+               wylosujLiczbyDoUlozeniaStatku(wylosowana_kolumna,wylosowany_wiersz,wylosowany_kierunek);
+               try
+               {
+                   plansza.ulozStatkiNaPlanszy(wylosowany_wiersz,wylosowana_kolumna,wylosowany_kierunek,i,2);
+                   break;
+               }
+               catch (out_of_range)
+               {
+
+               }
+            }
+        }
+
+    }
 
 }
 

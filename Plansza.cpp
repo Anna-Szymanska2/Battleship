@@ -71,6 +71,49 @@ void Plansza::ustawStatek(Statek &statek, int typ, int numer)
     }
 }
 
+void Plansza::ulozStatkiNaPlanszy(int wiersz, int kolumna, int kierunek, int typ, int numer)
+{
+    switch(typ)
+    {
+    case 1:
+    {
+        if(numer==1)
+            ulozStatekNaPlanszy(jednomasztowiec1,wiersz,kolumna,kierunek);
+        else
+            ulozStatekNaPlanszy(jednomasztowiec2,wiersz,kolumna,kierunek);
+        break;
+    }
+    case 2:
+    {
+        if(numer==1)
+            ulozStatekNaPlanszy(dwumasztowiec1,wiersz,kolumna,kierunek);
+        else
+            ulozStatekNaPlanszy(dwumasztowiec2,wiersz,kolumna,kierunek);
+        break;
+    }
+    case 3:
+    {
+        if(numer==1)
+            ulozStatekNaPlanszy(trojmasztowiec1,wiersz,kolumna,kierunek);
+        else
+            ulozStatekNaPlanszy(trojmasztowiec2,wiersz,kolumna,kierunek);
+        break;
+    }
+    case 4:
+    {
+        ulozStatekNaPlanszy(czteromasztowiec,wiersz,kolumna,kierunek);
+        break;
+    }
+    case 5:
+    {
+        ulozStatekNaPlanszy(pieciomasztowiec,wiersz,kolumna,kierunek);
+        break;
+    }
+    }
+
+
+}
+
 
 // chyba jednak niepotrzebne wiec nieprzetestowane
 Statek Plansza::zwrocStatek(int typ, int numer)
@@ -152,6 +195,8 @@ void Plansza::ulozStatekNaPlanszy(Statek &statek, int wiersz, int kolumna, int k
             {
                 if(pola_planszy[wiersz-i][kolumna].zwrocCzyPoleJestWOtoczeniuStatku())
                     throw out_of_range("Statek nie moze byc ustawiony tak blisko drugiego");
+                if(pola_planszy[wiersz-i][kolumna].zwrocCzyPoleZawieraStatek())
+                    throw out_of_range("Statek nie moze byc ustawiony tak blisko drugiego");
             }
 
             for(int i = 0; i < dlugosc_statku; i++)
@@ -205,6 +250,8 @@ void Plansza::ulozStatekNaPlanszy(Statek &statek, int wiersz, int kolumna, int k
             {
                 if(pola_planszy[wiersz][kolumna+i].zwrocCzyPoleJestWOtoczeniuStatku())
                     throw out_of_range("Statek nie moze byc ustawiony tak blisko drugiego");
+                if(pola_planszy[wiersz][kolumna+i].zwrocCzyPoleZawieraStatek())
+                    throw out_of_range("Statek nie moze byc ustawiony tak blisko drugiego");
             }
 
             for(int i = 0; i < dlugosc_statku; i++)
@@ -252,6 +299,8 @@ void Plansza::ulozStatekNaPlanszy(Statek &statek, int wiersz, int kolumna, int k
             {
                 if(pola_planszy[wiersz+i][kolumna].zwrocCzyPoleJestWOtoczeniuStatku())
                     throw out_of_range("Statek nie moze byc ustawiony tak blisko drugiego");
+                if(pola_planszy[wiersz+i][kolumna].zwrocCzyPoleZawieraStatek())
+                    throw out_of_range("Statek nie moze byc ustawiony tak blisko drugiego");
             }
 
             for(int i = 0; i < dlugosc_statku; i++)
@@ -298,6 +347,8 @@ void Plansza::ulozStatekNaPlanszy(Statek &statek, int wiersz, int kolumna, int k
             for(int i = 0; i < dlugosc_statku; i++)
             {
                 if(pola_planszy[wiersz][kolumna-i].zwrocCzyPoleJestWOtoczeniuStatku())
+                    throw out_of_range("Statek nie moze byc ustawiony tak blisko drugiego");
+                if(pola_planszy[wiersz][kolumna-i].zwrocCzyPoleZawieraStatek())
                     throw out_of_range("Statek nie moze byc ustawiony tak blisko drugiego");
             }
 

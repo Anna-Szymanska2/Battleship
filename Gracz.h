@@ -8,12 +8,13 @@ using namespace std;
 
 class Gracz
 {
-protected:
+//protected:
+public: //zmienic po testach
     Plansza plansza;
     string nazwa;
     bool czy_wygral;
 
-public:
+//public:
     Gracz();
     ~Gracz();
 

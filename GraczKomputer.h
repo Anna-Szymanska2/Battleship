@@ -12,7 +12,6 @@ public:
     GraczKomputer();
     ~GraczKomputer();
     void ustawStatki();
-    void ustawPojedynczyStatek(int &wylosowana_kolumna, int &wylosowany_wiersz, int &wylosowany_kierunek, int dlugosc_statku, int numer);
 
 
 };
