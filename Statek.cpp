@@ -11,6 +11,13 @@ Statek::Statek()
     p_czy_jest_zatopiony = false;
 }
 
+Statek::Statek(int dlugosc_statku)
+{
+    p_czy_jest_trafiony = false;
+    p_czy_jest_zatopiony = false;
+    p_dlugosc_statku = dlugosc_statku;
+}
+
 void Statek::ustawCzyJestTrafiony(bool czy_jest_trafiony)
 {
     p_czy_jest_trafiony = czy_jest_trafiony;

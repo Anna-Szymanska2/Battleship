@@ -25,6 +25,8 @@ public: //zmienic pozniej
     Plansza();
     void wyswietlZawartoscPlanszy();
     void ulozStatekNaPlanszy(Statek &statek, int wiersz, int kolumna, int kierunek);
+    void ustawStatek(Statek &statek,int typ, int numer);
+    Statek zwrocStatek(int typ, int numer);
 };
 
 

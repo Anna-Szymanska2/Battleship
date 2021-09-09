@@ -30,6 +30,90 @@ Plansza::Plansza()
 
 }
 
+void Plansza::ustawStatek(Statek &statek, int typ, int numer)
+{
+    switch(typ)
+    {
+    case 1:
+    {
+        if(numer==1)
+            jednomasztowiec1 = statek;
+        else
+            jednomasztowiec2 = statek;
+        break;
+    }
+    case 2:
+    {
+        if(numer==1)
+            dwumasztowiec1 = statek;
+        else
+            dwumasztowiec2 = statek;
+        break;
+    }
+    case 3:
+    {
+        if(numer==1)
+            trojmasztowiec1 = statek;
+        else
+            trojmasztowiec2 = statek;
+        break;
+    }
+    case 4:
+    {
+        czteromasztowiec = statek;
+        break;
+    }
+    case 5:
+    {
+        pieciomasztowiec = statek;
+        break;
+    }
+    }
+}
+
+
+// chyba jednak niepotrzebne wiec nieprzetestowane
+Statek Plansza::zwrocStatek(int typ, int numer)
+{
+    switch(typ)
+    {
+    case 1:
+    {
+        if(numer==1)
+            return jednomasztowiec1;
+        else
+            return jednomasztowiec2;
+        break;
+    }
+    case 2:
+    {
+        if(numer==1)
+            return dwumasztowiec1;
+        else
+            return dwumasztowiec2;
+        break;
+    }
+    case 3:
+    {
+        if(numer==1)
+            return trojmasztowiec1;
+        else
+            return trojmasztowiec2;
+        break;
+    }
+    case 4:
+    {
+        return czteromasztowiec;
+        break;
+    }
+    case 5:
+    {
+        return pieciomasztowiec;
+        break;
+    }
+    }
+}
+
 void Plansza::wyswietlZawartoscPlanszy()
 {
     cout << "   A B C D E F G H I J" << endl;

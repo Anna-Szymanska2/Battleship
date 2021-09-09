@@ -16,6 +16,7 @@ class Statek
 
 public:
     Statek();
+    Statek(int dlugosc_statku);
   //  ~Statek();
     void ustawCzyJestTrafiony(bool czy_jest_trafiony);
     void ustawCzyJestZatopiony(bool czy_jest_zatopiony);
