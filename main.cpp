@@ -29,14 +29,15 @@ int main()
 
 
 //    plansza1.wyswietlZawartoscPlanszy();
+    GraczCzlowiek cz1;
+    cz1.ustawStatki();
+//    GraczKomputer mpk1;
+//    cout << mpk1.zwrocNazwe() << endl;
+//    mpk1.ustawStatki();
+//    mpk1.wyswietlPlansze();
 
-    GraczKomputer mpk1;
-    cout << mpk1.zwrocNazwe() << endl;
-    mpk1.ustawStatki();
-    mpk1.wyswietlPlansze();
-//    GraczCzlowiek cz1;
-//    cout << cz1.zwrocNazwe() << endl;
-    mpk1.zwrocNazwe();
+////    cout << cz1.zwrocNazwe() << endl;
+//    mpk1.zwrocNazwe();
 
     HANDLE standardowy_uchwyt_wyjscia;
     standardowy_uchwyt_wyjscia = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -53,6 +54,9 @@ int main()
     cout << " 8 - - - - - - - - - -" << endl;
     cout << " 9 - - - - - - - - - -" << endl;
     cout << "10 - - - - - - - - - -" << endl;
+
+   // system("cls");
+    cout << "Ekran wyczyszony" << endl;
 
 
 

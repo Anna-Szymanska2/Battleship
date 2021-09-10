@@ -29,7 +29,7 @@ Plansza::Plansza()
     jednomasztowiec2.ustawDlugoscStatku(1);
 
 }
-
+// z tego raczej nie bede korzystac (moze byc tu cos powodujace tajemniczy blad)
 void Plansza::ustawStatek(Statek &statek, int typ, int numer)
 {
     switch(typ)
