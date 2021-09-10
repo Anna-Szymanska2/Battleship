@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <cstdlib>
 #include <limits>
+#include <exception>
 
 using namespace std;
 
@@ -39,13 +40,13 @@ void GraczCzlowiek:: ustawStatki()
                cout << "Teraz ustawisz swoj statek jednomasztowy" << endl;
 
            pobierzOdGraczaLitere(odpowiedz_liczba_po_konwersji,odpowiedz,wybrana_kolumna);
-           //cout << wybrana_kolumna << endl;
            pobierzOdGraczaLiczbeWiersz(wybrany_wiersz,odpowiedz_liczba);
-           //cout << wybrany_wiersz;
+
            if(i!=1)
-           pobierzOdGraczaLiczbeKierunek(wybrany_kierunek,odpowiedz_liczba);
-           //cout << wybrany_kierunek;
-           getchar();getchar();
+               pobierzOdGraczaLiczbeKierunek(wybrany_kierunek,odpowiedz_liczba);
+
+           getchar();
+           //getchar();
 
            try
            {
@@ -54,7 +55,7 @@ void GraczCzlowiek:: ustawStatki()
            }
            catch (out_of_range e)
            {
-             e.what();
+             cout << e.what() << endl;
              cout << "Bedziesz musial wybrac jego ustawienie jeszcze raz" << endl;
              getchar();
            }
@@ -72,13 +73,13 @@ void GraczCzlowiek:: ustawStatki()
                    cout << "Teraz ustawisz swoj drugi statek jednomasztowy" << endl;
 
                pobierzOdGraczaLitere(odpowiedz_liczba_po_konwersji,odpowiedz,wybrana_kolumna);
-              // cout << wybrana_kolumna << endl;
                pobierzOdGraczaLiczbeWiersz(wybrany_wiersz,odpowiedz_liczba);
-              // cout << wybrany_wiersz;
+
                if(i!=1)
-               pobierzOdGraczaLiczbeKierunek(wybrany_kierunek,odpowiedz_liczba);
-              // cout << wybrany_kierunek;
-               getchar();getchar();
+                   pobierzOdGraczaLiczbeKierunek(wybrany_kierunek,odpowiedz_liczba);
+
+               getchar();
+               //getchar();
 
                try
                {
@@ -87,13 +88,14 @@ void GraczCzlowiek:: ustawStatki()
                }
                catch (out_of_range e)
                {
-                   e.what();
+                   cout << e.what() << endl;
                    cout << "Bedziesz musial wybrac jego ustawienie jeszcze raz" << endl;
                    getchar();
                }
             }
         }
     }
+    wyswietlInfoKoncowePoUstawieniuStatkow();
 }
 void GraczCzlowiek::wyswietlInfoWstepnePrzyUstawianiuStatkow()
 {
@@ -114,6 +116,15 @@ void GraczCzlowiek::wyswietlInfoWstepnePrzyUstawianiuStatkow()
     cout << "Litera wskaze kolumne, liczba wiersz" << endl;
     cout << "Druga podana przez Ciebie liczba wskaze kierunek, w ktorym beda ulozone pozostale pola statku" << endl;
     cout << "1 - gora, 2 - prawy bok, 3 - dol, 4 - lewy bok" << endl << endl;
+}
+
+void GraczCzlowiek::wyswietlInfoKoncowePoUstawieniuStatkow()
+{
+    system("cls");
+    cout << "Ustawiles juz cala swoja flote!" << endl;
+    cout << "Tak wyglada Twoja plansza: " << endl << endl;
+    wyswietlPlansze();
+    cout << endl;
 }
 
 void pobierzOdGraczaLitere(int odpowiedz_liczba_po_konwersji, char odpowiedz, int &wybrana_kolumna)
@@ -147,7 +158,7 @@ void pobierzOdGraczaLiczbeWiersz(int &wybrany_wiersz, int odpowiedz_liczba)
     bool czy_jest_blad = false;
     do
     {
-        cout << "Podaj liczbe calkowita z zakresu 1-10";
+        cout << "Podaj liczbe calkowita z zakresu 1-10: ";
         cin >> odpowiedz_liczba;
         czy_jest_blad = cin.fail();
 
@@ -171,7 +182,7 @@ void pobierzOdGraczaLiczbeKierunek(int &wybrany_kierunek, int odpowiedz_liczba)
     bool czy_jest_blad = false;
     do
     {
-        cout << "Podaj liczbe calkowita z zakresu 1-4";
+        cout << "Podaj liczbe calkowita z zakresu 1-4: ";
         cin >> odpowiedz_liczba;
         czy_jest_blad = cin.fail();
 

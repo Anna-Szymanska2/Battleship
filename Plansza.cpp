@@ -387,7 +387,7 @@ void Plansza::ulozStatekNaPlanszy(Statek &statek, int wiersz, int kolumna, int k
             }
         }
         else
-            throw out_of_range("Dany statek nie miesci sie na planszy");
+            throw out_of_range ("Dany statek nie miesci sie na planszy");
         break;
 
 

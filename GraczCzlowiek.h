@@ -13,6 +13,7 @@ public:
     ~GraczCzlowiek();
     void ustawStatki();
     void wyswietlInfoWstepnePrzyUstawianiuStatkow();
+    void wyswietlInfoKoncowePoUstawieniuStatkow();
 
 };
 
