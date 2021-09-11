@@ -14,9 +14,11 @@ public:
     void ustawStatki();
     void wyswietlInfoWstepnePrzyUstawianiuStatkow();
     void wyswietlInfoKoncowePoUstawieniuStatkow();
+    void oddajStrzal(Gracz *przeciwnik);
 
 };
 
-void pobierzOdGraczaLitere(int odpowiedz_liczba_po_konwersji, char odpowiedz, int &wybrana_kolumna);
-void pobierzOdGraczaLiczbeWiersz(int &wybrany_wiersz, int odpowiedz_liczba);
-void pobierzOdGraczaLiczbeKierunek(int &wybrany_kierunek, int odpowiedz_liczba);
+void pobierzOdGraczaLitere(int &wybrana_kolumna);
+void pobierzOdGraczaLiczbeWiersz(int &wybrany_wiersz);
+void pobierzOdGraczaLiczbeKierunek(int &wybrany_kierunek);
+void wyswietlInfoWstepnePrzyOddaniuStrzalu(Gracz *przeciwnik);

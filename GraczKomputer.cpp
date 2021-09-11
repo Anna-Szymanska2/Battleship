@@ -13,28 +13,28 @@ GraczKomputer::GraczKomputer():Gracz()
     switch(wylosowana_liczba)
     {
     case 0:
-       nazwa = "Wieslaw";
+       p_nazwa = "Wieslaw";
         break;
     case 1:
-        nazwa = "Janusz";
+        p_nazwa = "Janusz";
         break;
     case 2:
-        nazwa = "Ryszard";
+        p_nazwa = "Ryszard";
         break;
     case 3:
-        nazwa = "Zbigniew";
+        p_nazwa = "Zbigniew";
         break;
     case 4:
-        nazwa = "Grazyna";
+        p_nazwa = "Grazyna";
         break;
     case 5:
-        nazwa = "Kunegunda";
+        p_nazwa = "Kunegunda";
         break;
     case 6:
-        nazwa = "Marzena";
+        p_nazwa = "Marzena";
         break;
     case 7:
-        nazwa = "Miroslawa";
+        p_nazwa = "Miroslawa";
         break;
     }
 
@@ -61,7 +61,7 @@ void GraczKomputer::ustawStatki()
            wylosujLiczbyDoUlozeniaStatku(wylosowana_kolumna,wylosowany_wiersz,wylosowany_kierunek);
            try
            {
-               plansza.ulozStatkiNaPlanszy(wylosowany_wiersz,wylosowana_kolumna,wylosowany_kierunek,i,1);
+               p_plansza.ulozStatkiNaPlanszy(wylosowany_wiersz,wylosowana_kolumna,wylosowany_kierunek,i,1);
                break;
            }
            catch (out_of_range)
@@ -77,7 +77,7 @@ void GraczKomputer::ustawStatki()
                wylosujLiczbyDoUlozeniaStatku(wylosowana_kolumna,wylosowany_wiersz,wylosowany_kierunek);
                try
                {
-                   plansza.ulozStatkiNaPlanszy(wylosowany_wiersz,wylosowana_kolumna,wylosowany_kierunek,i,2);
+                   p_plansza.ulozStatkiNaPlanszy(wylosowany_wiersz,wylosowana_kolumna,wylosowany_kierunek,i,2);
                    break;
                }
                catch (out_of_range)
@@ -88,6 +88,7 @@ void GraczKomputer::ustawStatki()
         }
 
     }
+    //wyczyscPlanszePoUstawieniuStatkow(); po testach trzeba odkomentowac
 
 }
 

@@ -9,6 +9,7 @@ Statek::Statek()
 {
     p_czy_jest_trafiony = false;
     p_czy_jest_zatopiony = false;
+    p_ile_razy_zostal_trafiony = 0;
 }
 
 Statek::Statek(int dlugosc_statku)
@@ -16,6 +17,7 @@ Statek::Statek(int dlugosc_statku)
     p_czy_jest_trafiony = false;
     p_czy_jest_zatopiony = false;
     p_dlugosc_statku = dlugosc_statku;
+    p_ile_razy_zostal_trafiony = 0;
 }
 
 void Statek::ustawCzyJestTrafiony(bool czy_jest_trafiony)
@@ -44,3 +46,28 @@ int Statek::zwrocDlugoscStatku()
 {
     return p_dlugosc_statku;
 }
+
+bool Statek::zwrocCzyStatekJestZatopiony()
+{
+    return p_czy_jest_zatopiony;
+}
+
+int Statek::zwrocIleRazyTrafionoStatek()
+{
+    return p_ile_razy_zostal_trafiony;
+}
+bool Statek::sprawdzCzyDanePoleJestCzesciaStatku(Pole *pole)
+{
+    for(int i = 0; i< p_dlugosc_statku; i++)
+    {
+        if(pole == p_polozenie[i])
+            return true;
+    }
+    return false;
+}
+Statek& Statek:: operator++()
+{
+    p_ile_razy_zostal_trafiony++;
+    return *this;
+}
+

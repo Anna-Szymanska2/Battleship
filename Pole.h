@@ -29,6 +29,7 @@ public:
     void ustawCzyJestZaznaczone(bool czy_jest_zaznaczone);
     bool zwrocCzyPoleJestWOtoczeniuStatku();
     bool zwrocCzyPoleZawieraStatek();
+    bool zwrocCzyPoleJestTrafione();
     void wyswietlPole();
 
 };

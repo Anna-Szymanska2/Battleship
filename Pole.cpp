@@ -76,3 +76,8 @@ bool Pole::zwrocCzyPoleZawieraStatek()
 {
     return p_czy_zawiera_statek;
 }
+
+bool Pole::zwrocCzyPoleJestTrafione()
+{
+    return p_czy_zostalo_trafione;
+}

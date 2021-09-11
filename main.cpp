@@ -21,7 +21,7 @@ int main()
 //    plansza.pola_planszy[4][9].ustawCzyJestZaznaczone(1);
 //    plansza.pola_planszy[4][9].ustawCzyZostaloTrafione(1);
 //    plansza.pola_planszy[4][9].ustawCzyZawieraStatek(1);
-//   // plansza.wyswietlZawartoscPlanszy();
+//    plansza.wyswietlZawartoscPlanszy();
 
 //    Plansza plansza1;
 //    plansza1.ulozStatekNaPlanszy(plansza1.pieciomasztowiec, 5, 1, 2);
@@ -29,12 +29,22 @@ int main()
 
 
 //    plansza1.wyswietlZawartoscPlanszy();
-//    GraczCzlowiek cz1;
-//    cz1.ustawStatki();
     GraczKomputer mpk1;
     cout << mpk1.zwrocNazwe() << endl;
     mpk1.ustawStatki();
     mpk1.wyswietlPlansze();
+    mpk1.wyczyscPlanszePoUstawieniuStatkow();
+    Gracz *przeciwnik = &mpk1;
+    GraczCzlowiek cz1;
+    while(!cz1.zwrocCzyWygral())
+    {
+        cz1.oddajStrzal(przeciwnik);
+    }
+
+
+
+    //cz1.ustawStatki();
+
 
 ////    cout << cz1.zwrocNazwe() << endl;
 //    mpk1.zwrocNazwe();

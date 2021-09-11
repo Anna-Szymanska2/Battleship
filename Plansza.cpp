@@ -10,23 +10,23 @@ Plansza::Plansza()
 {
     for (int i = 0; i < 10; i++)
     {
-        pola_planszy.push_back(vector<Pole>());
+        p_pola_planszy.push_back(vector<Pole>());
 
         for(int j = 0; j < 10; j++)
         {
-            pola_planszy[i].push_back(Pole());
+            p_pola_planszy[i].push_back(Pole());
         }
 
     }
 
-    pieciomasztowiec.ustawDlugoscStatku(5);
-    czteromasztowiec.ustawDlugoscStatku(4);
-    trojmasztowiec1.ustawDlugoscStatku(3);
-    trojmasztowiec2.ustawDlugoscStatku(3);
-    dwumasztowiec1.ustawDlugoscStatku(2);
-    dwumasztowiec2.ustawDlugoscStatku(2);
-    jednomasztowiec1.ustawDlugoscStatku(1);
-    jednomasztowiec2.ustawDlugoscStatku(1);
+    p_pieciomasztowiec.ustawDlugoscStatku(5);
+    p_czteromasztowiec.ustawDlugoscStatku(4);
+    p_trojmasztowiec1.ustawDlugoscStatku(3);
+    p_trojmasztowiec2.ustawDlugoscStatku(3);
+    p_dwumasztowiec1.ustawDlugoscStatku(2);
+    p_dwumasztowiec2.ustawDlugoscStatku(2);
+    p_jednomasztowiec1.ustawDlugoscStatku(1);
+    p_jednomasztowiec2.ustawDlugoscStatku(1);
 
 }
 // z tego raczej nie bede korzystac (moze byc tu cos powodujace tajemniczy blad)
@@ -37,35 +37,35 @@ void Plansza::ustawStatek(Statek &statek, int typ, int numer)
     case 1:
     {
         if(numer==1)
-            jednomasztowiec1 = statek;
+            p_jednomasztowiec1 = statek;
         else
-            jednomasztowiec2 = statek;
+            p_jednomasztowiec2 = statek;
         break;
     }
     case 2:
     {
         if(numer==1)
-            dwumasztowiec1 = statek;
+            p_dwumasztowiec1 = statek;
         else
-            dwumasztowiec2 = statek;
+            p_dwumasztowiec2 = statek;
         break;
     }
     case 3:
     {
         if(numer==1)
-            trojmasztowiec1 = statek;
+            p_trojmasztowiec1 = statek;
         else
-            trojmasztowiec2 = statek;
+            p_trojmasztowiec2 = statek;
         break;
     }
     case 4:
     {
-        czteromasztowiec = statek;
+        p_czteromasztowiec = statek;
         break;
     }
     case 5:
     {
-        pieciomasztowiec = statek;
+        p_pieciomasztowiec = statek;
         break;
     }
     }
@@ -78,35 +78,35 @@ void Plansza::ulozStatkiNaPlanszy(int wiersz, int kolumna, int kierunek, int typ
     case 1:
     {
         if(numer==1)
-            ulozStatekNaPlanszy(jednomasztowiec1,wiersz,kolumna,kierunek);
+            ulozStatekNaPlanszy(p_jednomasztowiec1,wiersz,kolumna,kierunek);
         else
-            ulozStatekNaPlanszy(jednomasztowiec2,wiersz,kolumna,kierunek);
+            ulozStatekNaPlanszy(p_jednomasztowiec2,wiersz,kolumna,kierunek);
         break;
     }
     case 2:
     {
         if(numer==1)
-            ulozStatekNaPlanszy(dwumasztowiec1,wiersz,kolumna,kierunek);
+            ulozStatekNaPlanszy(p_dwumasztowiec1,wiersz,kolumna,kierunek);
         else
-            ulozStatekNaPlanszy(dwumasztowiec2,wiersz,kolumna,kierunek);
+            ulozStatekNaPlanszy(p_dwumasztowiec2,wiersz,kolumna,kierunek);
         break;
     }
     case 3:
     {
         if(numer==1)
-            ulozStatekNaPlanszy(trojmasztowiec1,wiersz,kolumna,kierunek);
+            ulozStatekNaPlanszy(p_trojmasztowiec1,wiersz,kolumna,kierunek);
         else
-            ulozStatekNaPlanszy(trojmasztowiec2,wiersz,kolumna,kierunek);
+            ulozStatekNaPlanszy(p_trojmasztowiec2,wiersz,kolumna,kierunek);
         break;
     }
     case 4:
     {
-        ulozStatekNaPlanszy(czteromasztowiec,wiersz,kolumna,kierunek);
+        ulozStatekNaPlanszy(p_czteromasztowiec,wiersz,kolumna,kierunek);
         break;
     }
     case 5:
     {
-        ulozStatekNaPlanszy(pieciomasztowiec,wiersz,kolumna,kierunek);
+        ulozStatekNaPlanszy(p_pieciomasztowiec,wiersz,kolumna,kierunek);
         break;
     }
     }
@@ -123,35 +123,35 @@ Statek Plansza::zwrocStatek(int typ, int numer)
     case 1:
     {
         if(numer==1)
-            return jednomasztowiec1;
+            return p_jednomasztowiec1;
         else
-            return jednomasztowiec2;
+            return p_jednomasztowiec2;
         break;
     }
     case 2:
     {
         if(numer==1)
-            return dwumasztowiec1;
+            return p_dwumasztowiec1;
         else
-            return dwumasztowiec2;
+            return p_dwumasztowiec2;
         break;
     }
     case 3:
     {
         if(numer==1)
-            return trojmasztowiec1;
+            return p_trojmasztowiec1;
         else
-            return trojmasztowiec2;
+            return p_trojmasztowiec2;
         break;
     }
     case 4:
     {
-        return czteromasztowiec;
+        return p_czteromasztowiec;
         break;
     }
     case 5:
     {
-        return pieciomasztowiec;
+        return p_pieciomasztowiec;
         break;
     }
     }
@@ -169,7 +169,7 @@ void Plansza::wyswietlZawartoscPlanszy()
 
         for(int j = 0; j < 10; j++)
         {
-            pola_planszy[i][j].wyswietlPole();
+            p_pola_planszy[i][j].wyswietlPole();
             cout << " ";
         }
         cout << endl;
@@ -193,27 +193,27 @@ void Plansza::ulozStatekNaPlanszy(Statek &statek, int wiersz, int kolumna, int k
         {
             for(int i = 0; i < dlugosc_statku; i++)
             {
-                if(pola_planszy[wiersz-i][kolumna].zwrocCzyPoleJestWOtoczeniuStatku())
+                if(p_pola_planszy[wiersz-i][kolumna].zwrocCzyPoleJestWOtoczeniuStatku())
                     throw out_of_range("Statek nie moze byc ustawiony tak blisko drugiego");
-                if(pola_planszy[wiersz-i][kolumna].zwrocCzyPoleZawieraStatek())
+                if(p_pola_planszy[wiersz-i][kolumna].zwrocCzyPoleZawieraStatek())
                     throw out_of_range("Statek nie moze byc ustawiony tak blisko drugiego");
             }
 
             for(int i = 0; i < dlugosc_statku; i++)
 
             {
-                statek.dodajPoleStatku(&(pola_planszy[wiersz-i][kolumna]));
+                statek.dodajPoleStatku(&(p_pola_planszy[wiersz-i][kolumna]));
 
                 if(kolumna-1 >= 0)
                 {
-                    pola_planszy[wiersz-i][kolumna-1].ustawCzyJestZaznaczone(true);//tylko dla testu;
-                    pola_planszy[wiersz-i][kolumna-1].ustawCzyJestWOtoczeniuStatku(true);
+                    p_pola_planszy[wiersz-i][kolumna-1].ustawCzyJestZaznaczone(true);//tylko dla testu;
+                    p_pola_planszy[wiersz-i][kolumna-1].ustawCzyJestWOtoczeniuStatku(true);
                 }
 
                 if(kolumna+1 <= 9)
                 {
-                    pola_planszy[wiersz-i][kolumna+1].ustawCzyJestZaznaczone(true); //tylko dla testu
-                    pola_planszy[wiersz-i][kolumna+1].ustawCzyJestWOtoczeniuStatku(true);
+                    p_pola_planszy[wiersz-i][kolumna+1].ustawCzyJestZaznaczone(true); //tylko dla testu
+                    p_pola_planszy[wiersz-i][kolumna+1].ustawCzyJestWOtoczeniuStatku(true);
                 }
 
             }
@@ -224,14 +224,14 @@ void Plansza::ulozStatekNaPlanszy(Statek &statek, int wiersz, int kolumna, int k
             {
                 if(wiersz+1 <= 9 && kolumna-1+i >= 0 && kolumna-1+i <= 9)
                 {
-                    pola_planszy[wiersz+1][kolumna-1+i].ustawCzyJestZaznaczone(true); //tylko dla testu
-                    pola_planszy[wiersz+1][kolumna-1+i].ustawCzyJestWOtoczeniuStatku(true);
+                    p_pola_planszy[wiersz+1][kolumna-1+i].ustawCzyJestZaznaczone(true); //tylko dla testu
+                    p_pola_planszy[wiersz+1][kolumna-1+i].ustawCzyJestWOtoczeniuStatku(true);
                 }
 
                 if(wiersz_konczacy_statek-1 >= 0 && kolumna-1+i >= 0 && kolumna-1+i <=9)
                 {
-                    pola_planszy[wiersz_konczacy_statek-1][kolumna-1+i].ustawCzyJestZaznaczone(true); //tylko dla testu
-                    pola_planszy[wiersz_konczacy_statek-1][kolumna-1+i].ustawCzyJestWOtoczeniuStatku(true);
+                    p_pola_planszy[wiersz_konczacy_statek-1][kolumna-1+i].ustawCzyJestZaznaczone(true); //tylko dla testu
+                    p_pola_planszy[wiersz_konczacy_statek-1][kolumna-1+i].ustawCzyJestWOtoczeniuStatku(true);
                 }
 
             }
@@ -248,26 +248,26 @@ void Plansza::ulozStatekNaPlanszy(Statek &statek, int wiersz, int kolumna, int k
         {
             for(int i = 0; i < dlugosc_statku; i++)
             {
-                if(pola_planszy[wiersz][kolumna+i].zwrocCzyPoleJestWOtoczeniuStatku())
+                if(p_pola_planszy[wiersz][kolumna+i].zwrocCzyPoleJestWOtoczeniuStatku())
                     throw out_of_range("Statek nie moze byc ustawiony tak blisko drugiego");
-                if(pola_planszy[wiersz][kolumna+i].zwrocCzyPoleZawieraStatek())
+                if(p_pola_planszy[wiersz][kolumna+i].zwrocCzyPoleZawieraStatek())
                     throw out_of_range("Statek nie moze byc ustawiony tak blisko drugiego");
             }
 
             for(int i = 0; i < dlugosc_statku; i++)
             {
-                statek.dodajPoleStatku(&(pola_planszy[wiersz][kolumna+i]));
+                statek.dodajPoleStatku(&(p_pola_planszy[wiersz][kolumna+i]));
 
                 if(wiersz-1 >= 0)
                 {
-                    pola_planszy[wiersz-1][kolumna+i].ustawCzyJestZaznaczone(true);//tylko dla testu;
-                    pola_planszy[wiersz-1][kolumna+i].ustawCzyJestWOtoczeniuStatku(true);
+                    p_pola_planszy[wiersz-1][kolumna+i].ustawCzyJestZaznaczone(true);//tylko dla testu;
+                    p_pola_planszy[wiersz-1][kolumna+i].ustawCzyJestWOtoczeniuStatku(true);
                 }
 
                 if(wiersz+1 <= 9)
                 {
-                    pola_planszy[wiersz+1][kolumna+i].ustawCzyJestZaznaczone(true); //tylko dla testu
-                    pola_planszy[wiersz+1][kolumna+i].ustawCzyJestWOtoczeniuStatku(true);
+                    p_pola_planszy[wiersz+1][kolumna+i].ustawCzyJestZaznaczone(true); //tylko dla testu
+                    p_pola_planszy[wiersz+1][kolumna+i].ustawCzyJestWOtoczeniuStatku(true);
                 }
             }
             kolumna_konczaca_statek = kolumna + dlugosc_statku -1;
@@ -276,14 +276,14 @@ void Plansza::ulozStatekNaPlanszy(Statek &statek, int wiersz, int kolumna, int k
             {
                 if(kolumna-1 >= 0 && wiersz-1+i >= 0 && wiersz-1+i <= 9)
                 {
-                    pola_planszy[wiersz-1+i][kolumna-1].ustawCzyJestZaznaczone(true); //tylko dla testu
-                    pola_planszy[wiersz-1+i][kolumna-1].ustawCzyJestWOtoczeniuStatku(true);
+                    p_pola_planszy[wiersz-1+i][kolumna-1].ustawCzyJestZaznaczone(true); //tylko dla testu
+                    p_pola_planszy[wiersz-1+i][kolumna-1].ustawCzyJestWOtoczeniuStatku(true);
                 }
 
                 if(kolumna_konczaca_statek+1 <= 9 && wiersz-1+i >= 0 && wiersz-1+i <=9)
                 {
-                    pola_planszy[wiersz-1+i][kolumna_konczaca_statek+1].ustawCzyJestZaznaczone(true); //tylko dla testu
-                    pola_planszy[wiersz-1+i][kolumna_konczaca_statek+1].ustawCzyJestWOtoczeniuStatku(true);
+                    p_pola_planszy[wiersz-1+i][kolumna_konczaca_statek+1].ustawCzyJestZaznaczone(true); //tylko dla testu
+                    p_pola_planszy[wiersz-1+i][kolumna_konczaca_statek+1].ustawCzyJestWOtoczeniuStatku(true);
                 }
 
             }
@@ -297,26 +297,26 @@ void Plansza::ulozStatekNaPlanszy(Statek &statek, int wiersz, int kolumna, int k
         {
             for(int i = 0; i < dlugosc_statku; i++)
             {
-                if(pola_planszy[wiersz+i][kolumna].zwrocCzyPoleJestWOtoczeniuStatku())
+                if(p_pola_planszy[wiersz+i][kolumna].zwrocCzyPoleJestWOtoczeniuStatku())
                     throw out_of_range("Statek nie moze byc ustawiony tak blisko drugiego");
-                if(pola_planszy[wiersz+i][kolumna].zwrocCzyPoleZawieraStatek())
+                if(p_pola_planszy[wiersz+i][kolumna].zwrocCzyPoleZawieraStatek())
                     throw out_of_range("Statek nie moze byc ustawiony tak blisko drugiego");
             }
 
             for(int i = 0; i < dlugosc_statku; i++)
             {
-                statek.dodajPoleStatku(&(pola_planszy[wiersz+i][kolumna]));
+                statek.dodajPoleStatku(&(p_pola_planszy[wiersz+i][kolumna]));
 
                 if(kolumna-1 >= 0)
                 {
-                    pola_planszy[wiersz+i][kolumna-1].ustawCzyJestZaznaczone(true);//tylko dla testu;
-                    pola_planszy[wiersz+i][kolumna-1].ustawCzyJestWOtoczeniuStatku(true);
+                    p_pola_planszy[wiersz+i][kolumna-1].ustawCzyJestZaznaczone(true);//tylko dla testu;
+                    p_pola_planszy[wiersz+i][kolumna-1].ustawCzyJestWOtoczeniuStatku(true);
                 }
 
                 if(kolumna+1 <= 9)
                 {
-                    pola_planszy[wiersz+i][kolumna+1].ustawCzyJestZaznaczone(true); //tylko dla testu
-                    pola_planszy[wiersz+i][kolumna+1].ustawCzyJestWOtoczeniuStatku(true);
+                    p_pola_planszy[wiersz+i][kolumna+1].ustawCzyJestZaznaczone(true); //tylko dla testu
+                    p_pola_planszy[wiersz+i][kolumna+1].ustawCzyJestWOtoczeniuStatku(true);
                 }
             }
             wiersz_konczacy_statek = wiersz + dlugosc_statku - 1;
@@ -325,14 +325,14 @@ void Plansza::ulozStatekNaPlanszy(Statek &statek, int wiersz, int kolumna, int k
             {
                 if(wiersz-1 >= 0 && kolumna-1+i >= 0 && kolumna-1+i <= 9)
                 {
-                    pola_planszy[wiersz-1][kolumna-1+i].ustawCzyJestZaznaczone(true); //tylko dla testu
-                    pola_planszy[wiersz-1][kolumna-1+i].ustawCzyJestWOtoczeniuStatku(true);
+                    p_pola_planszy[wiersz-1][kolumna-1+i].ustawCzyJestZaznaczone(true); //tylko dla testu
+                    p_pola_planszy[wiersz-1][kolumna-1+i].ustawCzyJestWOtoczeniuStatku(true);
                 }
 
                 if(wiersz_konczacy_statek+1 <= 9 && kolumna-1+i >= 0 && kolumna-1+i <=9)
                 {
-                    pola_planszy[wiersz_konczacy_statek+1][kolumna-1+i].ustawCzyJestZaznaczone(true); //tylko dla testu
-                    pola_planszy[wiersz_konczacy_statek+1][kolumna-1+i].ustawCzyJestWOtoczeniuStatku(true);
+                    p_pola_planszy[wiersz_konczacy_statek+1][kolumna-1+i].ustawCzyJestZaznaczone(true); //tylko dla testu
+                    p_pola_planszy[wiersz_konczacy_statek+1][kolumna-1+i].ustawCzyJestWOtoczeniuStatku(true);
                 }
 
             }
@@ -346,26 +346,26 @@ void Plansza::ulozStatekNaPlanszy(Statek &statek, int wiersz, int kolumna, int k
         {
             for(int i = 0; i < dlugosc_statku; i++)
             {
-                if(pola_planszy[wiersz][kolumna-i].zwrocCzyPoleJestWOtoczeniuStatku())
+                if(p_pola_planszy[wiersz][kolumna-i].zwrocCzyPoleJestWOtoczeniuStatku())
                     throw out_of_range("Statek nie moze byc ustawiony tak blisko drugiego");
-                if(pola_planszy[wiersz][kolumna-i].zwrocCzyPoleZawieraStatek())
+                if(p_pola_planszy[wiersz][kolumna-i].zwrocCzyPoleZawieraStatek())
                     throw out_of_range("Statek nie moze byc ustawiony tak blisko drugiego");
             }
 
             for(int i = 0; i < dlugosc_statku; i++)
             {
-                statek.dodajPoleStatku(&(pola_planszy[wiersz][kolumna-i]));
+                statek.dodajPoleStatku(&(p_pola_planszy[wiersz][kolumna-i]));
 
                 if(wiersz-1 >= 0)
                 {
-                    pola_planszy[wiersz-1][kolumna-i].ustawCzyJestZaznaczone(true);//tylko dla testu;
-                    pola_planszy[wiersz-1][kolumna-i].ustawCzyJestWOtoczeniuStatku(true);
+                    p_pola_planszy[wiersz-1][kolumna-i].ustawCzyJestZaznaczone(true);//tylko dla testu;
+                    p_pola_planszy[wiersz-1][kolumna-i].ustawCzyJestWOtoczeniuStatku(true);
                 }
 
                 if(wiersz+1 <= 9)
                 {
-                    pola_planszy[wiersz+1][kolumna-i].ustawCzyJestZaznaczone(true); //tylko dla testu
-                    pola_planszy[wiersz+1][kolumna-i].ustawCzyJestWOtoczeniuStatku(true);
+                    p_pola_planszy[wiersz+1][kolumna-i].ustawCzyJestZaznaczone(true); //tylko dla testu
+                    p_pola_planszy[wiersz+1][kolumna-i].ustawCzyJestWOtoczeniuStatku(true);
                 }
             }
             kolumna_konczaca_statek = kolumna - dlugosc_statku + 1;
@@ -374,14 +374,14 @@ void Plansza::ulozStatekNaPlanszy(Statek &statek, int wiersz, int kolumna, int k
             {
                 if(kolumna+1 <= 9 && wiersz-1+i >= 0 && wiersz-1+i <= 9)
                 {
-                    pola_planszy[wiersz-1+i][kolumna+1].ustawCzyJestZaznaczone(true); //tylko dla testu
-                    pola_planszy[wiersz-1+i][kolumna+1].ustawCzyJestWOtoczeniuStatku(true);
+                    p_pola_planszy[wiersz-1+i][kolumna+1].ustawCzyJestZaznaczone(true); //tylko dla testu
+                    p_pola_planszy[wiersz-1+i][kolumna+1].ustawCzyJestWOtoczeniuStatku(true);
                 }
 
                 if(kolumna_konczaca_statek-1 >= 0 && wiersz-1+i >= 0 && wiersz-1+i <=9)
                 {
-                    pola_planszy[wiersz-1+i][kolumna_konczaca_statek-1].ustawCzyJestZaznaczone(true); //tylko dla testu
-                    pola_planszy[wiersz-1+i][kolumna_konczaca_statek-1].ustawCzyJestWOtoczeniuStatku(true);
+                    p_pola_planszy[wiersz-1+i][kolumna_konczaca_statek-1].ustawCzyJestZaznaczone(true); //tylko dla testu
+                    p_pola_planszy[wiersz-1+i][kolumna_konczaca_statek-1].ustawCzyJestWOtoczeniuStatku(true);
                 }
 
             }
@@ -393,5 +393,115 @@ void Plansza::ulozStatekNaPlanszy(Statek &statek, int wiersz, int kolumna, int k
 
     }
 
+}
+
+void Plansza::wyczyscPlanszePoUstawieniuStatkow()
+{
+    for(int i = 0; i<10; i++)
+    {
+        for (int j = 0; j<10; j++)
+        {
+            p_pola_planszy[i][j].ustawCzyZostaloTrafione(false);
+            p_pola_planszy[i][j].ustawCzyJestZaznaczone(false);
+        }
+    }
+}
+
+Pole* Plansza::zwrocWskaznikNaPoleODanymWierszuKolumnie(int wiersz, int kolumna)
+{
+    return &p_pola_planszy[wiersz][kolumna];
+}
+
+bool Plansza::czyWybranePoleByloWczesniejTrafione(int wiersz, int kolumna)
+{
+    return p_pola_planszy[wiersz][kolumna].zwrocCzyPoleJestTrafione();
+}
+
+void Plansza::ustawCzyPoleZostaloTrafione (bool czy_zostalo_trafione, int wiersz, int kolumna)
+{
+    p_pola_planszy[wiersz][kolumna].ustawCzyZostaloTrafione(czy_zostalo_trafione);
+}
+
+bool Plansza::zwrocCzyPoleZawieraStatek(int wiersz, int kolumna)
+{
+    return p_pola_planszy[wiersz][kolumna].zwrocCzyPoleZawieraStatek();
+}
+
+Statek* Plansza::zwrocStatekDoKtoregoNalezyDanePole(Pole *pole)
+{
+    if(!(p_pieciomasztowiec.zwrocCzyStatekJestZatopiony()))
+    {
+        if(p_pieciomasztowiec.sprawdzCzyDanePoleJestCzesciaStatku(pole))
+        {
+            //pieciomasztowiec.ustawCzyJestTrafiony(true);
+            return &p_pieciomasztowiec;
+        }
+    }
+
+    if(!(p_czteromasztowiec.zwrocCzyStatekJestZatopiony()))
+    {
+        if(p_czteromasztowiec.sprawdzCzyDanePoleJestCzesciaStatku(pole))
+        {
+            //pieciomasztowiec.ustawCzyJestTrafiony(true);
+            return &p_czteromasztowiec;
+        }
+    }
+
+    if(!(p_trojmasztowiec1.zwrocCzyStatekJestZatopiony()))
+    {
+        if(p_trojmasztowiec1.sprawdzCzyDanePoleJestCzesciaStatku(pole))
+        {
+            //pieciomasztowiec.ustawCzyJestTrafiony(true);
+            return &p_trojmasztowiec1;
+        }
+    }
+
+    if(!(p_trojmasztowiec2.zwrocCzyStatekJestZatopiony()))
+    {
+        if(p_trojmasztowiec2.sprawdzCzyDanePoleJestCzesciaStatku(pole))
+        {
+            //pieciomasztowiec.ustawCzyJestTrafiony(true);
+            return &p_trojmasztowiec2;
+        }
+    }
+
+    if(!(p_dwumasztowiec1.zwrocCzyStatekJestZatopiony()))
+    {
+        if(p_dwumasztowiec1.sprawdzCzyDanePoleJestCzesciaStatku(pole))
+        {
+            //pieciomasztowiec.ustawCzyJestTrafiony(true);
+            return &p_dwumasztowiec1;
+        }
+    }
+
+    if(!(p_dwumasztowiec2.zwrocCzyStatekJestZatopiony()))
+    {
+        if(p_dwumasztowiec2.sprawdzCzyDanePoleJestCzesciaStatku(pole))
+        {
+            //pieciomasztowiec.ustawCzyJestTrafiony(true);
+            return &p_dwumasztowiec2;
+        }
+    }
+
+    if(!(p_jednomasztowiec1.zwrocCzyStatekJestZatopiony()))
+    {
+        if(p_jednomasztowiec1.sprawdzCzyDanePoleJestCzesciaStatku(pole))
+        {
+            //pieciomasztowiec.ustawCzyJestTrafiony(true);
+            return &p_jednomasztowiec1;
+        }
+    }
+
+    if(!(p_jednomasztowiec2.zwrocCzyStatekJestZatopiony()))
+    {
+        if(p_jednomasztowiec2.sprawdzCzyDanePoleJestCzesciaStatku(pole))
+        {
+            //pieciomasztowiec.ustawCzyJestTrafiony(true);
+            return &p_jednomasztowiec2;
+        }
+    }
+
 
 }
+
+
