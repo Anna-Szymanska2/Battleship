@@ -81,3 +81,8 @@ bool Pole::zwrocCzyPoleJestTrafione()
 {
     return p_czy_zostalo_trafione;
 }
+
+bool Pole::zwrocCzyPoleJestZaznaczone()
+{
+    return p_czy_jest_zaznaczone;
+}

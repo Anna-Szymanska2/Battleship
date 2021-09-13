@@ -150,7 +150,7 @@ void GraczCzlowiek::oddajStrzal(Gracz *przeciwnik)
             {
                 wyswietlInfoWstepnePrzyOddaniuStrzalu(przeciwnik);
                 cout << "Trafiles statek, mozesz oddac kolejny strzal w tej turze!" << endl;
-                Pole *pole_trafione = zwrocWskaznikNaPolePlanszyODanymWierszuKolumnie(wybrany_wiersz, wybrana_kolumna);
+                Pole *pole_trafione = przeciwnik->zwrocWskaznikNaPolePlanszyODanymWierszuKolumnie(wybrany_wiersz, wybrana_kolumna);
                 Statek *statek_trafiony = przeciwnik->zwrocStatekDoKtoregoNalezyDanePole(pole_trafione);
                 ++(*statek_trafiony);
 
@@ -171,10 +171,14 @@ void GraczCzlowiek::oddajStrzal(Gracz *przeciwnik)
                         //getchar(); getchar();
                     }
                     else
-                        cout << "tutaj dodac cala zabawe z odznaczaniem " << endl;
+                    {
+                        odznaczPola(przeciwnik);
+                        continue;
+                    }
                 }
 
-                getchar(); getchar();
+                getchar();
+                getchar();
             }
 
         }
@@ -186,6 +190,53 @@ void GraczCzlowiek::oddajStrzal(Gracz *przeciwnik)
     getchar(); getchar();
 
 
+}
+
+void GraczCzlowiek::odznaczPola(Gracz *przeciwnik)
+{
+    char odp;
+    int odp_po_konwersji_na_liczbe;
+    int wybrana_kolumna;
+    int wybrany_wiersz;
+
+    cout << "Czy chcesz odznaczyc pole, w ktorym wg Ciebie nie moze byc statku?" << endl;
+    cout << "Jesli tak wpisz 't', jesli nie dowlony inny klawisz" << endl;
+    cin >> odp;
+    cin.ignore(numeric_limits < streamsize >::max(), '\n');
+    odp_po_konwersji_na_liczbe = (int)odp;
+
+    while(odp_po_konwersji_na_liczbe == 84 || odp_po_konwersji_na_liczbe == 116)
+    {
+        wyswietlInfoWstepnePrzyOddaniuStrzalu(przeciwnik);
+        cout << "Poprosze Cie teraz o podanie litery od A-J, a nastepnie liczby od 1-10" << endl;
+        cout << "Litera wskaze kolumne, liczba wiersz pola, ktore odznaczysz" << endl << endl;
+        pobierzOdGraczaLitere(wybrana_kolumna);
+        pobierzOdGraczaLiczbeWiersz(wybrany_wiersz);
+        Pole *pole_odznaczane = przeciwnik->zwrocWskaznikNaPolePlanszyODanymWierszuKolumnie(wybrany_wiersz, wybrana_kolumna);
+
+        if(pole_odznaczane->zwrocCzyPoleJestTrafione() || pole_odznaczane->zwrocCzyPoleJestZaznaczone())
+        {
+            if(pole_odznaczane->zwrocCzyPoleJestTrafione())
+                cout << "Nie mozesz odznaczyc pola, w ktore juz strzelales" << endl;
+            else
+                cout << "Nie mozesz odznaczyc pola, ktore juz raz odznaczyles" << endl;
+
+            cout << "Poprosze Cie teraz o ponowne wskazanie pola" << endl;
+            getchar(); getchar();
+           // continue; //nwm
+        }
+        else
+        {
+            pole_odznaczane->ustawCzyJestZaznaczone(true);
+            wyswietlInfoWstepnePrzyOddaniuStrzalu(przeciwnik);
+            cout << "Czy chcesz odznaczyc kolejne pole, w ktorym wg Ciebie nie moze byc statku?" << endl;
+            cout << "Jesli tak wpisz 't', jesli nie dowlony inny klawisz" << endl;
+            cin >> odp;
+            cin.ignore(numeric_limits < streamsize >::max(), '\n');
+            odp_po_konwersji_na_liczbe = (int)odp;
+
+        }
+    }
 }
 void pobierzOdGraczaLitere(int &wybrana_kolumna)
 {

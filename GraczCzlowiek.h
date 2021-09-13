@@ -15,6 +15,7 @@ public:
     void wyswietlInfoWstepnePrzyUstawianiuStatkow();
     void wyswietlInfoKoncowePoUstawieniuStatkow();
     void oddajStrzal(Gracz *przeciwnik);
+    void odznaczPola(Gracz *przeciwnik);
 
 };
 

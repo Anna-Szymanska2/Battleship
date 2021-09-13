@@ -30,6 +30,7 @@ public:
     bool zwrocCzyPoleJestWOtoczeniuStatku();
     bool zwrocCzyPoleZawieraStatek();
     bool zwrocCzyPoleJestTrafione();
+    bool zwrocCzyPoleJestZaznaczone();
     void wyswietlPole();
 
 };
