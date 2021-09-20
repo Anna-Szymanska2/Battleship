@@ -19,7 +19,7 @@ Pole::~Pole()
    // cout << "destruktor ~Pole()" << endl;
 }
 
-void Pole:: wyswietlPole()
+void Pole:: wyswietlPole(int kolor)
 {
     HANDLE standardowy_uchwyt_wyjscia;
     standardowy_uchwyt_wyjscia = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -27,7 +27,7 @@ void Pole:: wyswietlPole()
     {
         if(p_czy_zawiera_statek)
         {
-            SetConsoleTextAttribute(standardowy_uchwyt_wyjscia,12); // zamiast 12 zmienna mozna dac?
+            SetConsoleTextAttribute(standardowy_uchwyt_wyjscia,kolor); // zamiast 12 zmienna mozna dac?
             cout << "X";
         }
         else
@@ -85,4 +85,9 @@ bool Pole::zwrocCzyPoleJestTrafione()
 bool Pole::zwrocCzyPoleJestZaznaczone()
 {
     return p_czy_jest_zaznaczone;
+}
+
+void Pole::odznaczLubZaznacz()
+{
+    p_czy_jest_zaznaczone = !p_czy_jest_zaznaczone;
 }

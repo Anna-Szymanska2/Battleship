@@ -37,6 +37,11 @@ void Gracz::wyswietlPlansze()
     p_plansza.wyswietlZawartoscPlanszy();
 }
 
+void Gracz::wyswietlPlanszeNaKoniecGry()
+{
+    p_plansza.wyswietlZawartoscPlanszyPodKoniecGry();
+}
+
 void Gracz::wyczyscPlanszePoUstawieniuStatkow()
 {
    p_plansza.wyczyscPlanszePoUstawieniuStatkow();

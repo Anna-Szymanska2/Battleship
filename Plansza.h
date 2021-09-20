@@ -8,8 +8,6 @@ using namespace std;
 
 class Plansza
 {
-
- //zmienic pozniej
     vector<vector<Pole>> p_pola_planszy;
     vector<pair<int,int>> p_zajete_miejsca;
     Statek p_pieciomasztowiec;
@@ -24,6 +22,7 @@ class Plansza
 public:
     Plansza();
     void wyswietlZawartoscPlanszy();
+    void wyswietlZawartoscPlanszyPodKoniecGry();
     void ulozStatekNaPlanszy(Statek &statek, int wiersz, int kolumna, int kierunek);
     void ulozStatkiNaPlanszy(int wiersz, int kolumna, int kierunek, int typ, int numer);
     void ustawStatek(Statek &statek,int typ, int numer);

@@ -31,7 +31,8 @@ public:
     bool zwrocCzyPoleZawieraStatek();
     bool zwrocCzyPoleJestTrafione();
     bool zwrocCzyPoleJestZaznaczone();
-    void wyswietlPole();
+    void wyswietlPole(int kolor);
+    void odznaczLubZaznacz();
 
 };
 

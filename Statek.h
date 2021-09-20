@@ -9,7 +9,6 @@ using namespace std;
 
 class Statek
 {
-//zmienic po testach
     int p_dlugosc_statku;
     vector<Pole*> p_polozenie;
     bool p_czy_jest_trafiony;

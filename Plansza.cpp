@@ -159,6 +159,9 @@ Statek Plansza::zwrocStatek(int typ, int numer)
 
 void Plansza::wyswietlZawartoscPlanszy()
 {
+    Pole *wsk_pole;
+    Statek *wsk_statek;
+    int kolor = 0;
     cout << "   A B C D E F G H I J" << endl;
     for (int i = 0; i < 10; i++)
     {
@@ -169,12 +172,68 @@ void Plansza::wyswietlZawartoscPlanszy()
 
         for(int j = 0; j < 10; j++)
         {
-            p_pola_planszy[i][j].wyswietlPole();
+            wsk_pole = &p_pola_planszy[i][j];
+
+            if(wsk_pole->zwrocCzyPoleZawieraStatek())
+            {
+            wsk_statek = zwrocStatekDoKtoregoNalezyDanePole(wsk_pole);
+
+            if(wsk_statek)
+                kolor = 12;
+            else
+                kolor = 9;
+            }
+
+            p_pola_planszy[i][j].wyswietlPole(kolor);
             cout << " ";
         }
         cout << endl;
 
     }
+
+}
+
+void Plansza::wyswietlZawartoscPlanszyPodKoniecGry()
+{
+
+    Pole *wsk_pole;
+    Statek *wsk_statek;
+    int kolor = 0;
+    cout << "   A B C D E F G H I J" << endl;
+    for (int i = 0; i < 10; i++)
+    {
+        if(i == 9)
+            cout << i + 1 << " ";
+        else
+            cout << " " << i + 1 << " ";
+
+        for(int j = 0; j < 10; j++)
+        {
+            wsk_pole = &p_pola_planszy[i][j];
+
+            if(wsk_pole->zwrocCzyPoleZawieraStatek())
+            {
+            wsk_statek = zwrocStatekDoKtoregoNalezyDanePole(wsk_pole);
+
+            if(!wsk_pole->zwrocCzyPoleJestTrafione())
+            {
+                kolor = 10;
+                wsk_pole->ustawCzyZostaloTrafione(true);
+            }
+            else if(wsk_statek)
+                kolor = 12;
+            else
+                kolor = 9;
+            }
+
+            p_pola_planszy[i][j].wyswietlPole(kolor);
+            cout << " ";
+        }
+        cout << endl;
+
+    }
+
+
 
 }
 
@@ -427,6 +486,7 @@ bool Plansza::zwrocCzyPoleZawieraStatek(int wiersz, int kolumna)
     return p_pola_planszy[wiersz][kolumna].zwrocCzyPoleZawieraStatek();
 }
 
+//zwaca null jesli pole nalezy do statku zatopionego lub nie nalezy do statku, i wsk na statek jesli nalezy do statku niezatopionego (trafionego lub nie)
 Statek* Plansza::zwrocStatekDoKtoregoNalezyDanePole(Pole *pole)
 {
     if(!(p_pieciomasztowiec.zwrocCzyStatekJestZatopiony()))
@@ -501,6 +561,7 @@ Statek* Plansza::zwrocStatekDoKtoregoNalezyDanePole(Pole *pole)
         }
     }
 
+    return NULL;
 
 }
 

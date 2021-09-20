@@ -8,14 +8,13 @@
 
 using namespace std;
 
-GraczCzlowiek::GraczCzlowiek():Gracz()
+GraczCzlowiek::GraczCzlowiek(string nazwa_gracza):Gracz()
 {
-    cout << "Podaj jak sie nazywasz" << endl;
-    getline(cin,p_nazwa);
+    p_nazwa = nazwa_gracza;
 }
 GraczCzlowiek::~GraczCzlowiek()
 {
-    cout << "To nie dziala " << endl;
+    //cout << "To nie dziala " << endl;
 }
 
 void GraczCzlowiek:: ustawStatki()
@@ -31,7 +30,7 @@ void GraczCzlowiek:: ustawStatki()
         {
            wyswietlInfoWstepnePrzyUstawianiuStatkow();
 
-           if(i!=0)
+           if(i!=1)
                cout << "Teraz ustawisz swoj statek o " << i << ". masztach" << endl;
            else
                cout << "Teraz ustawisz swoj statek jednomasztowy" << endl;
@@ -96,6 +95,7 @@ void GraczCzlowiek:: ustawStatki()
 void GraczCzlowiek::wyswietlInfoWstepnePrzyUstawianiuStatkow()
 {
     system("cls");
+    cout << "Czesc " << zwrocNazwe() << "!" << endl;
     cout << "Twoim zadaniem jest ustawienie statkow" << endl;
     cout << "Tak wyglada obecnie Twoja plansza: " << endl << endl;
     wyswietlPlansze();
@@ -117,7 +117,7 @@ void GraczCzlowiek::wyswietlInfoWstepnePrzyUstawianiuStatkow()
 void GraczCzlowiek::wyswietlInfoKoncowePoUstawieniuStatkow()
 {
     system("cls");
-    cout << "Ustawiles juz cala swoja flote!" << endl;
+    cout << zwrocNazwe() << " ustawiles juz cala swoja flote!" << endl;
     cout << "Tak wyglada Twoja plansza: " << endl << endl;
     wyswietlPlansze();
     cout << endl;
@@ -149,7 +149,8 @@ void GraczCzlowiek::oddajStrzal(Gracz *przeciwnik)
             if(czy_tura_trwa)
             {
                 wyswietlInfoWstepnePrzyOddaniuStrzalu(przeciwnik);
-                cout << "Trafiles statek, mozesz oddac kolejny strzal w tej turze!" << endl;
+                cout << "Trafiles statek!" << endl;
+                //cout << "Bedziesz mogl oddac kolejny strzal w tej turze" << endl;
                 Pole *pole_trafione = przeciwnik->zwrocWskaznikNaPolePlanszyODanymWierszuKolumnie(wybrany_wiersz, wybrana_kolumna);
                 Statek *statek_trafiony = przeciwnik->zwrocStatekDoKtoregoNalezyDanePole(pole_trafione);
                 ++(*statek_trafiony);
@@ -166,17 +167,20 @@ void GraczCzlowiek::oddajStrzal(Gracz *przeciwnik)
                     if(przeciwnik->zwrocLiczbeZatopionychStatkow() == 8)
                     {
                         cout << "Gracz " << zwrocNazwe() << " wygral!" << endl;
-                        ustawCzyGraczWygral(true);
+                        ustawCzyGraczWygral(true);                       
+                        getchar(); getchar();
                         break;
-                        //getchar(); getchar();
                     }
                     else
                     {
+                        cout << "Bedziesz mogl oddac kolejny strzal w tej turze" << endl;
                         odznaczPola(przeciwnik);
                         continue;
-                    }
-                }
 
+                    }
+
+                }
+                cout << "Bedziesz mogl oddac kolejny strzal w tej turze" << endl;
                 getchar();
                 getchar();
             }
@@ -184,10 +188,13 @@ void GraczCzlowiek::oddajStrzal(Gracz *przeciwnik)
         }
 
     }
+    if(!zwrocCzyWygral())
+    {
     wyswietlInfoWstepnePrzyOddaniuStrzalu(przeciwnik);
     cout << "Chybiles! Teraz bedzie wykonywal ruch Twoj przeciwnik -  ";
     cout << przeciwnik->zwrocNazwe() << endl;
     getchar(); getchar();
+    }
 
 
 }
@@ -199,43 +206,66 @@ void GraczCzlowiek::odznaczPola(Gracz *przeciwnik)
     int wybrana_kolumna;
     int wybrany_wiersz;
 
-    cout << "Czy chcesz odznaczyc pole, w ktorym wg Ciebie nie moze byc statku?" << endl;
-    cout << "Jesli tak wpisz 't', jesli nie dowlony inny klawisz" << endl;
-    cin >> odp;
-    cin.ignore(numeric_limits < streamsize >::max(), '\n');
-    odp_po_konwersji_na_liczbe = (int)odp;
+    cout << "Czy chcesz zaznaczyc pole, w ktorym wg Ciebie nie moze byc statku albo odznaczyc pole zaznaczone?" << endl;
+    spytajUzytkownikaCzyChceOdznaczycPole(odp,odp_po_konwersji_na_liczbe);
 
     while(odp_po_konwersji_na_liczbe == 84 || odp_po_konwersji_na_liczbe == 116)
     {
         wyswietlInfoWstepnePrzyOddaniuStrzalu(przeciwnik);
         cout << "Poprosze Cie teraz o podanie litery od A-J, a nastepnie liczby od 1-10" << endl;
-        cout << "Litera wskaze kolumne, liczba wiersz pola, ktore odznaczysz" << endl << endl;
+        cout << "Litera wskaze kolumne, liczba wiersz pola, ktore zaznaczysz a jesli jest zaznaczone odznaczysz" << endl << endl;
         pobierzOdGraczaLitere(wybrana_kolumna);
         pobierzOdGraczaLiczbeWiersz(wybrany_wiersz);
         Pole *pole_odznaczane = przeciwnik->zwrocWskaznikNaPolePlanszyODanymWierszuKolumnie(wybrany_wiersz, wybrana_kolumna);
 
-        if(pole_odznaczane->zwrocCzyPoleJestTrafione() || pole_odznaczane->zwrocCzyPoleJestZaznaczone())
+        if(pole_odznaczane->zwrocCzyPoleJestTrafione())
         {
-            if(pole_odznaczane->zwrocCzyPoleJestTrafione())
-                cout << "Nie mozesz odznaczyc pola, w ktore juz strzelales" << endl;
-            else
-                cout << "Nie mozesz odznaczyc pola, ktore juz raz odznaczyles" << endl;
-
+            cout << "Nie mozesz zaznaczyc pola, w ktore juz strzelales" << endl;
             cout << "Poprosze Cie teraz o ponowne wskazanie pola" << endl;
             getchar(); getchar();
            // continue; //nwm
         }
         else
         {
-            pole_odznaczane->ustawCzyJestZaznaczone(true);
+            pole_odznaczane->odznaczLubZaznacz();
             wyswietlInfoWstepnePrzyOddaniuStrzalu(przeciwnik);
             cout << "Czy chcesz odznaczyc kolejne pole, w ktorym wg Ciebie nie moze byc statku?" << endl;
-            cout << "Jesli tak wpisz 't', jesli nie dowlony inny klawisz" << endl;
-            cin >> odp;
-            cin.ignore(numeric_limits < streamsize >::max(), '\n');
-            odp_po_konwersji_na_liczbe = (int)odp;
+            spytajUzytkownikaCzyChceOdznaczycPole(odp,odp_po_konwersji_na_liczbe);
 
         }
+    }
+}
+
+void GraczCzlowiek::wyswietlInfoWstepnePrzyOddaniuStrzalu(Gracz *przeciwnik)
+{
+    system("cls");
+    cout << zwrocNazwe() << " twoim zadaniem jest oddanie strzalu, wygrasz gre jesli zatopisz cala flote przeciwnika" << endl;
+    cout << "Obecnie plansza Twojego przeciwnika wyglada tak: " << endl << endl;
+    przeciwnik->wyswietlPlansze();
+    cout << endl;
+    cout<< "Pamietaj:" << endl;
+    cout << "-Biale myslniki oznaczaja pola, ktore nie zostaly jeszcze trafione ani odznaczone" << endl;
+    cout << "-Czerwone krzyze to pola statkow w trakcie zatapiania" << endl;
+    cout << "-Niebieskie krzyze to pola statkow, ktore zostaly juz zatopione" << endl;
+    cout << "-Biale hasztagi oznaczaja pola, do ktorych strzeliles, a nie zawieraly statku" << endl;
+    cout << "-Zolte hasztagi to pola, ktore zostaly przez Ciebie zaznaczone" << endl << endl;
+
+}
+
+
+void spytajUzytkownikaCzyChceOdznaczycPole(char &odp, int &odp_po_konwersji_na_liczbe)
+{
+    cout << "Jesli tak wpisz 't', jesli nie 'n' " << endl;
+    cin >> odp;
+    cin.ignore(numeric_limits < streamsize >::max(), '\n');
+    odp_po_konwersji_na_liczbe = (int)odp;
+
+    while(odp_po_konwersji_na_liczbe != 84 && odp_po_konwersji_na_liczbe != 116 && odp_po_konwersji_na_liczbe != 78 && odp_po_konwersji_na_liczbe != 110)
+    {
+        cout << "Podales niepoprawny znak musze poprosic cie o ponowne jego podanie" << endl;
+        cin >> odp;
+        cin.ignore(numeric_limits < streamsize >::max(), '\n');
+        odp_po_konwersji_na_liczbe = (int)odp;
     }
 }
 void pobierzOdGraczaLitere(int &wybrana_kolumna)
@@ -316,18 +346,4 @@ void pobierzOdGraczaLiczbeKierunek(int &wybrany_kierunek)
 
 }
 
-void wyswietlInfoWstepnePrzyOddaniuStrzalu(Gracz *przeciwnik)
-{
-    system("cls");
-    cout << "Twoim zadaniem jest oddanie strzalu, wygrasz gre jesli zatopisz cala flote przeciwnika" << endl;
-    cout << "Obecnie plansza Twojego przeciwnika wyglada tak: " << endl << endl;
-    przeciwnik->wyswietlPlansze();
-    cout << endl;
-    cout<< "Pamietaj:" << endl;
-    cout << "-Biale myslniki oznaczaja pola, ktore nie zostaly jeszcze trafione ani odznaczone" << endl;
-    cout << "-Czerwone krzyze to pola statkow w trakcie zatapiania" << endl;
-    cout << "-Niebieskie krzyze to pola statkow, ktore zostaly juz zatopione" << endl;
-    cout << "-Biale hasztagi oznaczaja pola, do ktorych strzeliles, a nie zawieraly statku" << endl;
-    cout << "-Zolte hasztagi to pola, ktore zostaly przez Ciebie odznaczone" << endl << endl;
 
-}
