@@ -39,7 +39,27 @@ void Statek::dodajPoleStatku(Pole* pole)
 {
     pole->ustawCzyZawieraStatek(1);
     pole->ustawCzyZostaloTrafione(1); //zmienic jak bede miec funkcje strzelajaca
-    p_polozenie.push_back(pole);
+    p_polozenie_statku.push_back(pole);
+}
+
+void Statek::zaznaczOkoliceStatku()
+{
+    for(unsigned int i = 0; i < p_okolice_statku.size(); i++)
+    {
+        p_okolice_statku[i]->ustawCzyJestZaznaczone(1);
+    }
+}
+
+unsigned int Statek::zwrocDlugoscWektoraOkoliceStatku()
+{
+    return p_okolice_statku.size();
+}
+
+void Statek::dodajPoleOkolicyStatku(Pole *pole)
+{
+    pole->ustawCzyJestWOtoczeniuStatku(1);
+    pole->ustawCzyJestZaznaczone(1);
+    p_okolice_statku.push_back(pole);
 }
 
 int Statek::zwrocDlugoscStatku()
@@ -60,14 +80,26 @@ bool Statek::sprawdzCzyDanePoleJestCzesciaStatku(Pole *pole)
 {
     for(int i = 0; i< p_dlugosc_statku; i++)
     {
-        if(pole == p_polozenie[i])
+        if(pole == p_polozenie_statku[i])
             return true;
     }
     return false;
+}
+vector<Pole*> Statek::zwrocWektorOkolicStatku()
+{
+    return p_okolice_statku;
 }
 Statek& Statek:: operator++()
 {
     p_ile_razy_zostal_trafiony++;
     return *this;
+}
+
+Pole* Statek::operator[](unsigned int i)
+{
+    if(i >= p_okolice_statku.size())
+        throw out_of_range("Wektor nie ma elementu o takim indeksie");
+
+    return p_okolice_statku[i];
 }
 

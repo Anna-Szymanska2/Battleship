@@ -6,6 +6,7 @@
 #include <limits>
 #include <exception>
 
+
 using namespace std;
 
 GraczCzlowiek::GraczCzlowiek(string nazwa_gracza):Gracz()
@@ -174,7 +175,7 @@ void GraczCzlowiek::oddajStrzal(Gracz *przeciwnik)
                     else
                     {
                         cout << "Bedziesz mogl oddac kolejny strzal w tej turze" << endl;
-                        odznaczPola(przeciwnik);
+                        odznaczPola(przeciwnik,statek_trafiony);
                         continue;
 
                     }
@@ -199,41 +200,19 @@ void GraczCzlowiek::oddajStrzal(Gracz *przeciwnik)
 
 }
 
-void GraczCzlowiek::odznaczPola(Gracz *przeciwnik)
+void GraczCzlowiek::odznaczPola(Gracz *przeciwnik, Statek *zatopiony_statek)
 {
     char odp;
     int odp_po_konwersji_na_liczbe;
-    int wybrana_kolumna;
-    int wybrany_wiersz;
 
-    cout << "Czy chcesz zaznaczyc pole, w ktorym wg Ciebie nie moze byc statku albo odznaczyc pole zaznaczone?" << endl;
+    cout << "Czy chcesz zaznaczyc pola, w ktorych wg zasad nie moze byc statku?" << endl;
     spytajUzytkownikaCzyChceOdznaczycPole(odp,odp_po_konwersji_na_liczbe);
 
-    while(odp_po_konwersji_na_liczbe == 84 || odp_po_konwersji_na_liczbe == 116)
-    {
-        wyswietlInfoWstepnePrzyOddaniuStrzalu(przeciwnik);
-        cout << "Poprosze Cie teraz o podanie litery od A-J, a nastepnie liczby od 1-10" << endl;
-        cout << "Litera wskaze kolumne, liczba wiersz pola, ktore zaznaczysz a jesli jest zaznaczone odznaczysz" << endl << endl;
-        pobierzOdGraczaLitere(wybrana_kolumna);
-        pobierzOdGraczaLiczbeWiersz(wybrany_wiersz);
-        Pole *pole_odznaczane = przeciwnik->zwrocWskaznikNaPolePlanszyODanymWierszuKolumnie(wybrany_wiersz, wybrana_kolumna);
-
-        if(pole_odznaczane->zwrocCzyPoleJestTrafione())
-        {
-            cout << "Nie mozesz zaznaczyc pola, w ktore juz strzelales" << endl;
-            cout << "Poprosze Cie teraz o ponowne wskazanie pola" << endl;
-            getchar(); getchar();
-           // continue; //nwm
-        }
-        else
-        {
-            pole_odznaczane->odznaczLubZaznacz();
-            wyswietlInfoWstepnePrzyOddaniuStrzalu(przeciwnik);
-            cout << "Czy chcesz odznaczyc kolejne pole, w ktorym wg Ciebie nie moze byc statku?" << endl;
-            spytajUzytkownikaCzyChceOdznaczycPole(odp,odp_po_konwersji_na_liczbe);
-
-        }
-    }
+    if(odp_po_konwersji_na_liczbe == 84 || odp_po_konwersji_na_liczbe == 116)
+       {
+           zatopiony_statek->zaznaczOkoliceStatku();
+           wyswietlInfoWstepnePrzyOddaniuStrzalu(przeciwnik);
+       }
 }
 
 void GraczCzlowiek::wyswietlInfoWstepnePrzyOddaniuStrzalu(Gracz *przeciwnik)

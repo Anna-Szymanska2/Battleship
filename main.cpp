@@ -16,7 +16,7 @@ void zagrajZKomputerem();
 
 int main()
 {
-    //testowy2();
+    testowy2();
     bool czy_program_trwa = true;
 
     while(czy_program_trwa)
@@ -189,9 +189,17 @@ void zagrajZKomputerem()
 void testowy2()
 {
     GraczKomputer mpk2;
+    GraczKomputer mpk3;
     cout << mpk2.zwrocNazwe() << endl;
     mpk2.ustawStatki();
-    mpk2.wyswietlPlanszeNaKoniecGry();
+    mpk2.wyswietlPlansze();
+    getchar();
+    mpk2.wyczyscPlanszePoUstawieniuStatkow();
+    mpk3.ustawMozliwePolaZeStatkami(&mpk2);
+    while(mpk2.zwrocLiczbeZatopionychStatkow() != 8)
+    {
+        mpk3.oddajStrzal(&mpk2);
+    }
     getchar();
     getchar();
 }

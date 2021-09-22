@@ -245,6 +245,7 @@ void Plansza::ulozStatekNaPlanszy(Statek &statek, int wiersz, int kolumna, int k
     int wiersz_konczacy_statek;
     int kolumna_konczaca_statek;
 
+
     switch(kierunek)
     {
     case 1:
@@ -265,14 +266,16 @@ void Plansza::ulozStatekNaPlanszy(Statek &statek, int wiersz, int kolumna, int k
 
                 if(kolumna-1 >= 0)
                 {
-                    p_pola_planszy[wiersz-i][kolumna-1].ustawCzyJestZaznaczone(true);//tylko dla testu;
-                    p_pola_planszy[wiersz-i][kolumna-1].ustawCzyJestWOtoczeniuStatku(true);
+                   // p_pola_planszy[wiersz-i][kolumna-1].ustawCzyJestZaznaczone(true);//tylko dla testu;
+                   // p_pola_planszy[wiersz-i][kolumna-1].ustawCzyJestWOtoczeniuStatku(true);
+                    statek.dodajPoleOkolicyStatku(&(p_pola_planszy[wiersz-i][kolumna-1]));
                 }
 
                 if(kolumna+1 <= 9)
                 {
-                    p_pola_planszy[wiersz-i][kolumna+1].ustawCzyJestZaznaczone(true); //tylko dla testu
-                    p_pola_planszy[wiersz-i][kolumna+1].ustawCzyJestWOtoczeniuStatku(true);
+                   // p_pola_planszy[wiersz-i][kolumna+1].ustawCzyJestZaznaczone(true); //tylko dla testu
+                   // p_pola_planszy[wiersz-i][kolumna+1].ustawCzyJestWOtoczeniuStatku(true);
+                    statek.dodajPoleOkolicyStatku(&(p_pola_planszy[wiersz-i][kolumna+1]));
                 }
 
             }
@@ -283,14 +286,16 @@ void Plansza::ulozStatekNaPlanszy(Statek &statek, int wiersz, int kolumna, int k
             {
                 if(wiersz+1 <= 9 && kolumna-1+i >= 0 && kolumna-1+i <= 9)
                 {
-                    p_pola_planszy[wiersz+1][kolumna-1+i].ustawCzyJestZaznaczone(true); //tylko dla testu
-                    p_pola_planszy[wiersz+1][kolumna-1+i].ustawCzyJestWOtoczeniuStatku(true);
+                    //p_pola_planszy[wiersz+1][kolumna-1+i].ustawCzyJestZaznaczone(true); //tylko dla testu
+                    //p_pola_planszy[wiersz+1][kolumna-1+i].ustawCzyJestWOtoczeniuStatku(true);
+                    statek.dodajPoleOkolicyStatku(&(p_pola_planszy[wiersz+1][kolumna-1+i]));
                 }
 
                 if(wiersz_konczacy_statek-1 >= 0 && kolumna-1+i >= 0 && kolumna-1+i <=9)
                 {
-                    p_pola_planszy[wiersz_konczacy_statek-1][kolumna-1+i].ustawCzyJestZaznaczone(true); //tylko dla testu
-                    p_pola_planszy[wiersz_konczacy_statek-1][kolumna-1+i].ustawCzyJestWOtoczeniuStatku(true);
+                    //p_pola_planszy[wiersz_konczacy_statek-1][kolumna-1+i].ustawCzyJestZaznaczone(true); //tylko dla testu
+                    //p_pola_planszy[wiersz_konczacy_statek-1][kolumna-1+i].ustawCzyJestWOtoczeniuStatku(true);
+                    statek.dodajPoleOkolicyStatku(&(p_pola_planszy[wiersz_konczacy_statek-1][kolumna-1+i]));
                 }
 
             }
@@ -319,14 +324,16 @@ void Plansza::ulozStatekNaPlanszy(Statek &statek, int wiersz, int kolumna, int k
 
                 if(wiersz-1 >= 0)
                 {
-                    p_pola_planszy[wiersz-1][kolumna+i].ustawCzyJestZaznaczone(true);//tylko dla testu;
-                    p_pola_planszy[wiersz-1][kolumna+i].ustawCzyJestWOtoczeniuStatku(true);
+                   // p_pola_planszy[wiersz-1][kolumna+i].ustawCzyJestZaznaczone(true);//tylko dla testu;
+                   // p_pola_planszy[wiersz-1][kolumna+i].ustawCzyJestWOtoczeniuStatku(true);
+                    statek.dodajPoleOkolicyStatku(&(p_pola_planszy[wiersz-1][kolumna+i]));
                 }
 
                 if(wiersz+1 <= 9)
                 {
-                    p_pola_planszy[wiersz+1][kolumna+i].ustawCzyJestZaznaczone(true); //tylko dla testu
-                    p_pola_planszy[wiersz+1][kolumna+i].ustawCzyJestWOtoczeniuStatku(true);
+                   // p_pola_planszy[wiersz+1][kolumna+i].ustawCzyJestZaznaczone(true); //tylko dla testu
+                   // p_pola_planszy[wiersz+1][kolumna+i].ustawCzyJestWOtoczeniuStatku(true);
+                    statek.dodajPoleOkolicyStatku(&(p_pola_planszy[wiersz+1][kolumna+i]));
                 }
             }
             kolumna_konczaca_statek = kolumna + dlugosc_statku -1;
@@ -335,14 +342,16 @@ void Plansza::ulozStatekNaPlanszy(Statek &statek, int wiersz, int kolumna, int k
             {
                 if(kolumna-1 >= 0 && wiersz-1+i >= 0 && wiersz-1+i <= 9)
                 {
-                    p_pola_planszy[wiersz-1+i][kolumna-1].ustawCzyJestZaznaczone(true); //tylko dla testu
-                    p_pola_planszy[wiersz-1+i][kolumna-1].ustawCzyJestWOtoczeniuStatku(true);
+                   // p_pola_planszy[wiersz-1+i][kolumna-1].ustawCzyJestZaznaczone(true); //tylko dla testu
+                   // p_pola_planszy[wiersz-1+i][kolumna-1].ustawCzyJestWOtoczeniuStatku(true);
+                    statek.dodajPoleOkolicyStatku(&(p_pola_planszy[wiersz-1+i][kolumna-1]));
                 }
 
                 if(kolumna_konczaca_statek+1 <= 9 && wiersz-1+i >= 0 && wiersz-1+i <=9)
                 {
-                    p_pola_planszy[wiersz-1+i][kolumna_konczaca_statek+1].ustawCzyJestZaznaczone(true); //tylko dla testu
-                    p_pola_planszy[wiersz-1+i][kolumna_konczaca_statek+1].ustawCzyJestWOtoczeniuStatku(true);
+                   // p_pola_planszy[wiersz-1+i][kolumna_konczaca_statek+1].ustawCzyJestZaznaczone(true); //tylko dla testu
+                   // p_pola_planszy[wiersz-1+i][kolumna_konczaca_statek+1].ustawCzyJestWOtoczeniuStatku(true);
+                    statek.dodajPoleOkolicyStatku(&(p_pola_planszy[wiersz-1+i][kolumna_konczaca_statek+1]));
                 }
 
             }
@@ -368,14 +377,16 @@ void Plansza::ulozStatekNaPlanszy(Statek &statek, int wiersz, int kolumna, int k
 
                 if(kolumna-1 >= 0)
                 {
-                    p_pola_planszy[wiersz+i][kolumna-1].ustawCzyJestZaznaczone(true);//tylko dla testu;
-                    p_pola_planszy[wiersz+i][kolumna-1].ustawCzyJestWOtoczeniuStatku(true);
+                   // p_pola_planszy[wiersz+i][kolumna-1].ustawCzyJestZaznaczone(true);//tylko dla testu;
+                   // p_pola_planszy[wiersz+i][kolumna-1].ustawCzyJestWOtoczeniuStatku(true);
+                    statek.dodajPoleOkolicyStatku(&(p_pola_planszy[wiersz+i][kolumna-1]));
                 }
 
                 if(kolumna+1 <= 9)
                 {
-                    p_pola_planszy[wiersz+i][kolumna+1].ustawCzyJestZaznaczone(true); //tylko dla testu
-                    p_pola_planszy[wiersz+i][kolumna+1].ustawCzyJestWOtoczeniuStatku(true);
+                    //p_pola_planszy[wiersz+i][kolumna+1].ustawCzyJestZaznaczone(true); //tylko dla testu
+                   // p_pola_planszy[wiersz+i][kolumna+1].ustawCzyJestWOtoczeniuStatku(true);
+                    statek.dodajPoleOkolicyStatku(&(p_pola_planszy[wiersz+i][kolumna+1]));
                 }
             }
             wiersz_konczacy_statek = wiersz + dlugosc_statku - 1;
@@ -384,14 +395,16 @@ void Plansza::ulozStatekNaPlanszy(Statek &statek, int wiersz, int kolumna, int k
             {
                 if(wiersz-1 >= 0 && kolumna-1+i >= 0 && kolumna-1+i <= 9)
                 {
-                    p_pola_planszy[wiersz-1][kolumna-1+i].ustawCzyJestZaznaczone(true); //tylko dla testu
-                    p_pola_planszy[wiersz-1][kolumna-1+i].ustawCzyJestWOtoczeniuStatku(true);
+                   // p_pola_planszy[wiersz-1][kolumna-1+i].ustawCzyJestZaznaczone(true); //tylko dla testu
+                    //p_pola_planszy[wiersz-1][kolumna-1+i].ustawCzyJestWOtoczeniuStatku(true);
+                    statek.dodajPoleOkolicyStatku(&(p_pola_planszy[wiersz-1][kolumna-1+i]));
                 }
 
                 if(wiersz_konczacy_statek+1 <= 9 && kolumna-1+i >= 0 && kolumna-1+i <=9)
                 {
-                    p_pola_planszy[wiersz_konczacy_statek+1][kolumna-1+i].ustawCzyJestZaznaczone(true); //tylko dla testu
-                    p_pola_planszy[wiersz_konczacy_statek+1][kolumna-1+i].ustawCzyJestWOtoczeniuStatku(true);
+                    //p_pola_planszy[wiersz_konczacy_statek+1][kolumna-1+i].ustawCzyJestZaznaczone(true); //tylko dla testu
+                    //p_pola_planszy[wiersz_konczacy_statek+1][kolumna-1+i].ustawCzyJestWOtoczeniuStatku(true);
+                    statek.dodajPoleOkolicyStatku(&(p_pola_planszy[wiersz_konczacy_statek+1][kolumna-1+i]));
                 }
 
             }
@@ -417,14 +430,16 @@ void Plansza::ulozStatekNaPlanszy(Statek &statek, int wiersz, int kolumna, int k
 
                 if(wiersz-1 >= 0)
                 {
-                    p_pola_planszy[wiersz-1][kolumna-i].ustawCzyJestZaznaczone(true);//tylko dla testu;
-                    p_pola_planszy[wiersz-1][kolumna-i].ustawCzyJestWOtoczeniuStatku(true);
+                   // p_pola_planszy[wiersz-1][kolumna-i].ustawCzyJestZaznaczone(true);//tylko dla testu;
+                   // p_pola_planszy[wiersz-1][kolumna-i].ustawCzyJestWOtoczeniuStatku(true);
+                    statek.dodajPoleOkolicyStatku(&(p_pola_planszy[wiersz-1][kolumna-i]));
                 }
 
                 if(wiersz+1 <= 9)
                 {
-                    p_pola_planszy[wiersz+1][kolumna-i].ustawCzyJestZaznaczone(true); //tylko dla testu
-                    p_pola_planszy[wiersz+1][kolumna-i].ustawCzyJestWOtoczeniuStatku(true);
+                    //p_pola_planszy[wiersz+1][kolumna-i].ustawCzyJestZaznaczone(true); //tylko dla testu
+                    //p_pola_planszy[wiersz+1][kolumna-i].ustawCzyJestWOtoczeniuStatku(true);
+                    statek.dodajPoleOkolicyStatku(&(p_pola_planszy[wiersz+1][kolumna-i]));
                 }
             }
             kolumna_konczaca_statek = kolumna - dlugosc_statku + 1;
@@ -433,14 +448,16 @@ void Plansza::ulozStatekNaPlanszy(Statek &statek, int wiersz, int kolumna, int k
             {
                 if(kolumna+1 <= 9 && wiersz-1+i >= 0 && wiersz-1+i <= 9)
                 {
-                    p_pola_planszy[wiersz-1+i][kolumna+1].ustawCzyJestZaznaczone(true); //tylko dla testu
-                    p_pola_planszy[wiersz-1+i][kolumna+1].ustawCzyJestWOtoczeniuStatku(true);
+                   // p_pola_planszy[wiersz-1+i][kolumna+1].ustawCzyJestZaznaczone(true); //tylko dla testu
+                   // p_pola_planszy[wiersz-1+i][kolumna+1].ustawCzyJestWOtoczeniuStatku(true);
+                    statek.dodajPoleOkolicyStatku(&(p_pola_planszy[wiersz-1+i][kolumna+1]));
                 }
 
                 if(kolumna_konczaca_statek-1 >= 0 && wiersz-1+i >= 0 && wiersz-1+i <=9)
                 {
-                    p_pola_planszy[wiersz-1+i][kolumna_konczaca_statek-1].ustawCzyJestZaznaczone(true); //tylko dla testu
-                    p_pola_planszy[wiersz-1+i][kolumna_konczaca_statek-1].ustawCzyJestWOtoczeniuStatku(true);
+                   // p_pola_planszy[wiersz-1+i][kolumna_konczaca_statek-1].ustawCzyJestZaznaczone(true); //tylko dla testu
+                   // p_pola_planszy[wiersz-1+i][kolumna_konczaca_statek-1].ustawCzyJestWOtoczeniuStatku(true);
+                    statek.dodajPoleOkolicyStatku(&(p_pola_planszy[wiersz-1+i][kolumna_konczaca_statek-1]));
                 }
 
             }

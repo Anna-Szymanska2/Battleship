@@ -23,6 +23,8 @@ protected:
     void ustawCzyGraczWygral(bool czy_wygral);
     int zwrocLiczbeZatopionychStatkow();
     virtual void ustawStatki() = 0;
+    virtual void oddajStrzal(Gracz *przeciwnik) = 0;
+    virtual void odznaczPola(Gracz *przeciwnik, Statek* zatopiony_statek) = 0;
     string zwrocNazwe();
     void wyswietlPlansze();
     void wyswietlPlanszeNaKoniecGry();
