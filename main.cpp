@@ -16,7 +16,7 @@ void zagrajZKomputerem();
 
 int main()
 {
-    testowy2();
+    //testowy2();
     bool czy_program_trwa = true;
 
     while(czy_program_trwa)
@@ -183,6 +183,48 @@ void zagrajZGraczem()
 
 void zagrajZKomputerem()
 {
+    cin.ignore(numeric_limits < streamsize >::max(), '\n');
+    string nazwa_gracza1;
+    cout << "Poprosze teraz o podanie jak sie nazywasz: " << endl;
+    getline(cin,nazwa_gracza1);
+    GraczCzlowiek gracz_cz1(nazwa_gracza1);
+    GraczKomputer gracz_k1;
+    cout << "Twoim przeciwnikiem bedzie gracz " << gracz_k1.zwrocNazwe() << endl;
+    cout << "Teraz bede Cie prosic o ustawienie statkow, " << gracz_cz1.zwrocNazwe() << endl;
+    getchar();
+    gracz_cz1.ustawStatki();
+    getchar();
+    cout << "A teraz statki bedzie ustawial twoj przecwinik - " << gracz_k1.zwrocNazwe() << endl;
+    cout << "Prosze o chwile cierpliwosci..." << endl;
+    gracz_k1.ustawStatki();
+    gracz_k1.wyswietlPlansze(); // zakomentowac pozniej
+    cout << "Twoj przeciwnik rozlozyl juz swoje statki, mozemy rozpoczac strzelanie!"<< endl;
+    getchar();
+    gracz_k1.wyczyscPlanszePoUstawieniuStatkow();
+    gracz_k1.ustawMozliwePolaZeStatkami(&gracz_cz1);
+
+    Gracz *wsk_gracz_cz1 = &gracz_cz1;
+    Gracz *wsk_gracz_cz2 = &gracz_k1;
+
+    while(!gracz_cz1.zwrocCzyWygral() && !gracz_k1.zwrocCzyWygral())
+    {
+
+        gracz_cz1.oddajStrzal(wsk_gracz_cz2);
+
+        if(gracz_cz1.zwrocCzyWygral())
+            continue;
+
+        gracz_k1.oddajStrzal(wsk_gracz_cz1);
+    }
+    system("cls");
+    cout << "A teraz wyswietle plansza wygranego gracza, na ktorej na zielono beda oznaczone pola statkow, ktore nie zostaly jeszcze trafione" << endl;
+
+    if(gracz_cz1.zwrocCzyWygral())
+        gracz_cz1.wyswietlPlanszeNaKoniecGry();
+    else
+        gracz_k1.wyswietlPlanszeNaKoniecGry();
+
+    getchar();
 
 }
 

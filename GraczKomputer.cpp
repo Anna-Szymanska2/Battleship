@@ -59,6 +59,15 @@ void GraczKomputer::ustawMozliwePolaZeStatkami(Gracz *przeciwnik)
 
 }
 
+void GraczKomputer::dodajPoleZatapianegoStatku(int wiersz, int kolumna, Pole *pole)
+{
+    tuple<int, int,Pole*> t;
+    get<0>(t) = wiersz;
+    get<1>(t) = kolumna;
+    get<2>(t) = pole;
+    p_pola_zatapianego_statku.push_back(t);
+}
+
 void wylosujLiczbyDoUlozeniaStatku(int &kolumna, int &wiersz, int &kierunek)
 {
     srand(time(NULL));
@@ -114,20 +123,148 @@ void GraczKomputer::ustawStatki()
 
 void GraczKomputer::oddajStrzal(Gracz *przeciwnik)
 {
-    tuple<int,int,Pole*> wybrane_miejsce;
+    pair<int,int> wybrane_miejsce;
     int wylosowana_liczba;
     bool czy_tura_trwa = true;
 
     while(czy_tura_trwa)
     {
         wyswietlInfoWstepnePrzyOddaniuStrzalu(przeciwnik);
+
+        if(p_pola_zatapianego_statku.size() == 0)
+        {           
+            srand(time(NULL));
+            wylosowana_liczba = rand()% p_mozliwe_pola_ze_statkami.size();
+            wybrane_miejsce.first = get<0>(p_mozliwe_pola_ze_statkami[wylosowana_liczba]);
+            wybrane_miejsce.second = get<1>(p_mozliwe_pola_ze_statkami[wylosowana_liczba]);
+            p_mozliwe_pola_ze_statkami.erase(p_mozliwe_pola_ze_statkami.begin() + wylosowana_liczba);
+
+
+        }
+        else
+        {
+            if(p_pola_zatapianego_statku.size() == 1)
+            {
+                while(true)
+                {
+                    wybrane_miejsce.first = get<0>(p_pola_zatapianego_statku[0])-1;
+                    wybrane_miejsce.second = get<1>(p_pola_zatapianego_statku[0]);
+                    auto it_szukany_element = find_if(p_mozliwe_pola_ze_statkami.begin(),p_mozliwe_pola_ze_statkami.end(),
+                                      [wybrane_miejsce](tuple <int,int,Pole*> &t){return (get<0>(t) == wybrane_miejsce.first) && (get<1>(t) == wybrane_miejsce.second);});
+
+                    if(it_szukany_element != p_mozliwe_pola_ze_statkami.end())
+                    {
+                        p_mozliwe_pola_ze_statkami.erase(it_szukany_element);
+                        break;
+                    }
+
+                    wybrane_miejsce.first = get<0>(p_pola_zatapianego_statku[0]);
+                    wybrane_miejsce.second = get<1>(p_pola_zatapianego_statku[0])+1;
+                    it_szukany_element = find_if(p_mozliwe_pola_ze_statkami.begin(),p_mozliwe_pola_ze_statkami.end(),
+                                      [wybrane_miejsce](tuple <int,int,Pole*> &t){return (get<0>(t) == wybrane_miejsce.first) && (get<1>(t) == wybrane_miejsce.second);});
+
+                    if(it_szukany_element != p_mozliwe_pola_ze_statkami.end())
+                    {
+                        p_mozliwe_pola_ze_statkami.erase(it_szukany_element);
+                        break;
+                    }
+
+                    wybrane_miejsce.first = get<0>(p_pola_zatapianego_statku[0])+1;
+                    wybrane_miejsce.second = get<1>(p_pola_zatapianego_statku[0]);
+                    it_szukany_element = find_if(p_mozliwe_pola_ze_statkami.begin(),p_mozliwe_pola_ze_statkami.end(),
+                                      [wybrane_miejsce](tuple <int,int,Pole*> &t){return (get<0>(t) == wybrane_miejsce.first) && (get<1>(t) == wybrane_miejsce.second);});
+
+                    if(it_szukany_element != p_mozliwe_pola_ze_statkami.end())
+                    {
+                        p_mozliwe_pola_ze_statkami.erase(it_szukany_element);
+                        break;
+                    }
+
+                    wybrane_miejsce.first = get<0>(p_pola_zatapianego_statku[0]);
+                    wybrane_miejsce.second = get<1>(p_pola_zatapianego_statku[0])-1;
+                    it_szukany_element = find_if(p_mozliwe_pola_ze_statkami.begin(),p_mozliwe_pola_ze_statkami.end(),
+                                      [wybrane_miejsce](tuple <int,int,Pole*> &t){return (get<0>(t) == wybrane_miejsce.first) && (get<1>(t) == wybrane_miejsce.second);});
+
+                    if(it_szukany_element != p_mozliwe_pola_ze_statkami.end())
+                    {
+                        p_mozliwe_pola_ze_statkami.erase(it_szukany_element);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                int indeks_na_ostatni_element = p_pola_zatapianego_statku.size() - 1;
+                //sprawdza czy statek jest poziomo
+                if(get<0>(p_pola_zatapianego_statku[0]) == get<0>(p_pola_zatapianego_statku[1]))
+                {
+                    while(true)
+                    {
+                        wybrane_miejsce.first = get<0>(p_pola_zatapianego_statku[indeks_na_ostatni_element]);
+                        wybrane_miejsce.second = get<1>(p_pola_zatapianego_statku[indeks_na_ostatni_element])+1;
+                        auto it_szukany_element = find_if(p_mozliwe_pola_ze_statkami.begin(),p_mozliwe_pola_ze_statkami.end(),
+                                          [wybrane_miejsce](tuple <int,int,Pole*> &t){return (get<0>(t) == wybrane_miejsce.first) && (get<1>(t) == wybrane_miejsce.second);});
+
+                        if(it_szukany_element != p_mozliwe_pola_ze_statkami.end())
+                        {
+                            p_mozliwe_pola_ze_statkami.erase(it_szukany_element);
+                            break;
+                        }
+
+                        wybrane_miejsce.first = get<0>(p_pola_zatapianego_statku[0]);
+                        wybrane_miejsce.second = get<1>(p_pola_zatapianego_statku[0])-1;
+                        it_szukany_element = find_if(p_mozliwe_pola_ze_statkami.begin(),p_mozliwe_pola_ze_statkami.end(),
+                                          [wybrane_miejsce](tuple <int,int,Pole*> &t){return (get<0>(t) == wybrane_miejsce.first) && (get<1>(t) == wybrane_miejsce.second);});
+
+                        if(it_szukany_element != p_mozliwe_pola_ze_statkami.end())
+                        {
+                            p_mozliwe_pola_ze_statkami.erase(it_szukany_element);
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    while(true)
+                    {
+                        wybrane_miejsce.first = get<0>(p_pola_zatapianego_statku[0])-1;
+                        wybrane_miejsce.second = get<1>(p_pola_zatapianego_statku[0]);
+                        auto it_szukany_element = find_if(p_mozliwe_pola_ze_statkami.begin(),p_mozliwe_pola_ze_statkami.end(),
+                                          [wybrane_miejsce](tuple <int,int,Pole*> &t){return (get<0>(t) == wybrane_miejsce.first) && (get<1>(t) == wybrane_miejsce.second);});
+
+                        if(it_szukany_element != p_mozliwe_pola_ze_statkami.end())
+                        {
+                            p_mozliwe_pola_ze_statkami.erase(it_szukany_element);
+                            break;
+                        }
+
+                        wybrane_miejsce.first = get<0>(p_pola_zatapianego_statku[indeks_na_ostatni_element])+1;
+                        wybrane_miejsce.second = get<1>(p_pola_zatapianego_statku[indeks_na_ostatni_element]);
+                        it_szukany_element = find_if(p_mozliwe_pola_ze_statkami.begin(),p_mozliwe_pola_ze_statkami.end(),
+                                          [wybrane_miejsce](tuple <int,int,Pole*> &t){return (get<0>(t) == wybrane_miejsce.first) && (get<1>(t) == wybrane_miejsce.second);});
+
+                        if(it_szukany_element != p_mozliwe_pola_ze_statkami.end())
+                        {
+                            p_mozliwe_pola_ze_statkami.erase(it_szukany_element);
+                            break;
+                        }
+
+
+                    }
+                }
+            }
+
+        }
+
+        przeciwnik->ustawCzyPolePlanszyZostaloTrafione(true,wybrane_miejsce.first, wybrane_miejsce.second);
+        czy_tura_trwa = przeciwnik->zwrocCzyPolePlanszyZawieraStatek(wybrane_miejsce.first, wybrane_miejsce.second);
+        cout << zwrocNazwe() << " strzela w pole " << char(wybrane_miejsce.second+65) << wybrane_miejsce.first+1 << "!" << endl;
+        getchar();
+
         //cout << "Poprosze Cie teraz o podanie litery od A-J, a nastepnie liczby od 1-10" << endl;
         //cout << "Litera wskaze kolumne, liczba wiersz pola, w ktore strzelisz" << endl << endl;
        // pobierzOdGraczaLitere(wybrana_kolumna);
        // pobierzOdGraczaLiczbeWiersz(wybrany_wiersz);
-        srand(time(NULL));
-        wylosowana_liczba = rand()% p_mozliwe_pola_ze_statkami.size();
-        wybrane_miejsce = p_mozliwe_pola_ze_statkami[wylosowana_liczba];
 
 //        if(przeciwnik->czyWybranePoleByloWczesniejTrafione(wybrany_wiersz,wybrana_kolumna))
 //        {
@@ -136,29 +273,30 @@ void GraczKomputer::oddajStrzal(Gracz *przeciwnik)
 //        }
 //        else
 //        {
-            przeciwnik->ustawCzyPolePlanszyZostaloTrafione(true,get<0>(wybrane_miejsce), get<1>(wybrane_miejsce));
-//            auto it_usuwany_element = find_if(p_mozliwe_pola_ze_statkami.begin(),p_mozliwe_pola_ze_statkami.end(),
-//                              [okolice_statku,i](tuple <int,int,Pole*> &t){return get<2>(t) == okolice_statku[i];});
-            p_mozliwe_pola_ze_statkami.erase(p_mozliwe_pola_ze_statkami.begin() + wylosowana_liczba);
-            czy_tura_trwa = przeciwnik->zwrocCzyPolePlanszyZawieraStatek(get<0>(wybrane_miejsce), get<1>(wybrane_miejsce));
+
 
             if(czy_tura_trwa)
             {
                 wyswietlInfoWstepnePrzyOddaniuStrzalu(przeciwnik);
-                cout << zwrocNazwe() << "trafia statek!" << endl;
+                cout << zwrocNazwe() << " trafia statek!" << endl;
                 //cout << "Bedziesz mogl oddac kolejny strzal w tej turze" << endl;
-                Pole *pole_trafione = get<2>(wybrane_miejsce);
+                Pole *pole_trafione = przeciwnik->zwrocWskaznikNaPolePlanszyODanymWierszuKolumnie(wybrane_miejsce.first, wybrane_miejsce.second);
                 Statek *statek_trafiony = przeciwnik->zwrocStatekDoKtoregoNalezyDanePole(pole_trafione);
                 ++(*statek_trafiony);
+                dodajPoleZatapianegoStatku(wybrane_miejsce.first, wybrane_miejsce.second,pole_trafione);
+                sort(p_pola_zatapianego_statku.begin(),p_pola_zatapianego_statku.end(),predykatSortujacyPolaZatapianegoStatku);
 
                 if(statek_trafiony->zwrocIleRazyTrafionoStatek() == 1)
+                {
                     statek_trafiony->ustawCzyJestTrafiony(true);
+                }
 
                 if(statek_trafiony->zwrocIleRazyTrafionoStatek() == statek_trafiony->zwrocDlugoscStatku())
                 {
                     statek_trafiony->ustawCzyJestZatopiony(true);
                     ++(*przeciwnik);
                     cout << "Statek, ktory trafil " << zwrocNazwe() << " zostal zatopiony!" << endl;
+                    p_pola_zatapianego_statku.erase(p_pola_zatapianego_statku.begin(),p_pola_zatapianego_statku.end());
 
                     if(przeciwnik->zwrocLiczbeZatopionychStatkow() == 8)
                     {
@@ -169,27 +307,27 @@ void GraczKomputer::oddajStrzal(Gracz *przeciwnik)
                     }
                     else
                     {
-                        cout << "Bedzie mogl oddac kolejny strzal w tej turze" << endl;
+                        cout << "Gracz " << zwrocNazwe() << " bedzie mogl oddac kolejny strzal w tej turze" << endl;
                         odznaczPola(przeciwnik,statek_trafiony);
                         continue;
 
                     }
 
-           //     }
-                cout << "Bedzie mogl oddac kolejny strzal w tej turze" << endl;
-                getchar();
+                 }
+                cout << "Gracz " << zwrocNazwe() << " bedzie mogl oddac kolejny strzal w tej turze" << endl;
+               // getchar();
                 getchar();
             }
 
-        }
+       // }
 
     }
     if(!zwrocCzyWygral())
     {
     wyswietlInfoWstepnePrzyOddaniuStrzalu(przeciwnik);
-    cout << "Chybiles! Teraz bedzie wykonywal ruch Twoj przeciwnik -  ";
+    cout << "Komputer " << zwrocNazwe() << " chybia! Teraz bedzie Twoj ruch, ";
     cout << przeciwnik->zwrocNazwe() << endl;
-    getchar(); getchar();
+    getchar();// getchar();
     }
 
 
@@ -215,7 +353,7 @@ void GraczKomputer:: odznaczPola(Gracz *przeciwnik, Statek *zatopiony_statek)
 void GraczKomputer::wyswietlInfoWstepnePrzyOddaniuStrzalu(Gracz *przeciwnik)
 {
     system("cls");
-    cout << przeciwnik->zwrocNazwe() << " bedzie teraz oddawal strzal do Twojej planszy, ktora z jego perspektywy wyglada tak:" << endl << endl;
+    cout << "Gracz " << zwrocNazwe() << " bedzie teraz oddawal strzal do Twojej planszy, ktora z jego perspektywy wyglada tak:" << endl << endl;
     przeciwnik->wyswietlPlansze();
     cout << endl;
     cout<< "Pamietaj:" << endl;
@@ -225,6 +363,11 @@ void GraczKomputer::wyswietlInfoWstepnePrzyOddaniuStrzalu(Gracz *przeciwnik)
     cout << "-Biale hasztagi oznaczaja pola, do ktorych komputer strzelil, a nie zawieraly statku" << endl;
     cout << "-Zolte hasztagi to pola, ktore zostaly przez niego zaznaczone" << endl << endl;
 
+}
+
+bool predykatSortujacyPolaZatapianegoStatku(tuple<int,int,Pole*> t1,tuple<int,int,Pole*> t2)
+{
+    return (get<0>(t1)<get<0>(t2) || get<1>(t1)<get<1>(t2));
 }
 
 

@@ -223,7 +223,7 @@ void GraczCzlowiek::wyswietlInfoWstepnePrzyOddaniuStrzalu(Gracz *przeciwnik)
     przeciwnik->wyswietlPlansze();
     cout << endl;
     cout<< "Pamietaj:" << endl;
-    cout << "-Biale myslniki oznaczaja pola, ktore nie zostaly jeszcze trafione ani odznaczone" << endl;
+    cout << "-Biale myslniki oznaczaja pola, ktore nie zostaly jeszcze trafione ani zaznaczone" << endl;
     cout << "-Czerwone krzyze to pola statkow w trakcie zatapiania" << endl;
     cout << "-Niebieskie krzyze to pola statkow, ktore zostaly juz zatopione" << endl;
     cout << "-Biale hasztagi oznaczaja pola, do ktorych strzeliles, a nie zawieraly statku" << endl;
