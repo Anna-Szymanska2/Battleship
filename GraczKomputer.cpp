@@ -346,7 +346,9 @@ void GraczKomputer:: odznaczPola(Gracz *przeciwnik, Statek *zatopiony_statek)
     {
         auto it_usuwany_element = find_if(p_mozliwe_pola_ze_statkami.begin(),p_mozliwe_pola_ze_statkami.end(),
                           [okolice_statku,i](tuple <int,int,Pole*> &t){return get<2>(t) == okolice_statku[i];});
-        p_mozliwe_pola_ze_statkami.erase(it_usuwany_element);
+
+        if(it_usuwany_element != p_mozliwe_pola_ze_statkami.end())
+             p_mozliwe_pola_ze_statkami.erase(it_usuwany_element);
     }
 }
 

@@ -185,11 +185,23 @@ void zagrajZKomputerem()
 {
     cin.ignore(numeric_limits < streamsize >::max(), '\n');
     string nazwa_gracza1;
-    cout << "Poprosze teraz o podanie jak sie nazywasz: " << endl;
-    getline(cin,nazwa_gracza1);
-    GraczCzlowiek gracz_cz1(nazwa_gracza1);
     GraczKomputer gracz_k1;
     cout << "Twoim przeciwnikiem bedzie gracz " << gracz_k1.zwrocNazwe() << endl;
+
+    do
+    {
+        cout << "Poprosze teraz o podanie jak sie nazywasz: " << endl;
+        getline(cin,nazwa_gracza1);
+
+        if(nazwa_gracza1 == gracz_k1.zwrocNazwe())
+        {
+            cout << "Nie mozesz sie nazywac tak samo jak twoj przeciwnik komputer!" << endl;
+            cout << "Dlatego poprosze Cie o podanie swojej nazwy jeszcze raz" << endl;
+        }
+
+    }while(nazwa_gracza1 == gracz_k1.zwrocNazwe());
+
+    GraczCzlowiek gracz_cz1(nazwa_gracza1);
     cout << "Teraz bede Cie prosic o ustawienie statkow, " << gracz_cz1.zwrocNazwe() << endl;
     getchar();
     gracz_cz1.ustawStatki();
@@ -197,7 +209,7 @@ void zagrajZKomputerem()
     cout << "A teraz statki bedzie ustawial twoj przecwinik - " << gracz_k1.zwrocNazwe() << endl;
     cout << "Prosze o chwile cierpliwosci..." << endl;
     gracz_k1.ustawStatki();
-    gracz_k1.wyswietlPlansze(); // zakomentowac pozniej
+  //  gracz_k1.wyswietlPlansze(); // zakomentowac pozniej
     cout << "Twoj przeciwnik rozlozyl juz swoje statki, mozemy rozpoczac strzelanie!"<< endl;
     getchar();
     gracz_k1.wyczyscPlanszePoUstawieniuStatkow();
